@@ -15,10 +15,13 @@ def handle_request(response):
             if response.error.code == 599:
                 http_client.fetch(response.request.url, handle_request)
                 print 'retry', response.request.url
-            else:
-                pass
+            elif response.error.code == 404:
                 #print response.request.url,
                 #print "Error:", response.error
+                remain_task -= 1
+            else:
+                print response.request.url,
+                print 'Error', response.error
                 remain_task -= 1
         else:
             print response.request.url,
@@ -47,11 +50,11 @@ def handle_request(response):
 
 http_client = AsyncHTTPClient()
 
-for a in range(1000000):
+for a in range(555555, 1000000):
     url = 'https://coderpad.io/' + '%06d' % a
     q.put(url)
 
-for _ in range(100):
+for _ in range(500):
     if q.empty():
         break
     url = q.get()
