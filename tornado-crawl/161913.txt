@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!-- CoderPad (c) 2013 Vincent Woo -->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","errorBeacon":"jserror.newrelic.com","licenseKey":"586aeabffa","applicationID":"2434573","transactionName":"cF5XTRNfXF9VQxkSVVdCFkoJX0c=","queueTime":12,"applicationTime":55,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-314.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function a(b,c,d){function e(f){if(!c[f]){var g=c[f]={exports:{}};b[f][0].call(g.exports,function(a){var c=b[f][1][a];return e(c?c:a)},g,g.exports,a,b,c,d)}return c[f].exports}for(var f=0;f<d.length;f++)e(d[f]);return e}({"4O2Y62":[function(a,b){function c(a,b){var c=d[a];return c?c.apply(this,b):(e[a]||(e[a]=[]),void e[a].push(b))}var d={},e={};b.exports=c,c.queues=e,c.handlers=d},{}],handle:[function(a,b){b.exports=a("4O2Y62")},{}],YLUGVp:[function(a,b){function c(){var a=m.info=NREUM.info;if(a&&a.agent&&a.licenseKey&&a.applicationID){m.proto="https"===l.split(":")[0]||a.sslForHttp?"https://":"http://",g("mark",["onload",f()]);var b=i.createElement("script");b.src=m.proto+a.agent,i.body.appendChild(b)}}function d(){"complete"===i.readyState&&e()}function e(){g("mark",["domContent",f()])}function f(){return(new Date).getTime()}var g=a("handle"),h=window,i=h.document,j="addEventListener",k="attachEvent",l=(""+location).split("?")[0],m=b.exports={offset:f(),origin:l};i[j]?(i[j]("DOMContentLoaded",e,!1),h[j]("load",c,!1)):(i[k]("onreadystatechange",d),h[k]("onload",c)),g("mark",["firstbyte",f()])},{handle:"4O2Y62"}],loader:[function(a,b){b.exports=a("YLUGVp")},{}]},{},["YLUGVp"]);</script>
+  <meta name="description"
+    content="CoderPad is the best tool available for conducting programming phone screen interviews. Edit code and run it with your candidate, realtime in the browser.">
+  <link rel="shortcut icon" href="//d146h09pbg0b1a.cloudfront.net/assets/coderpad_logo_32x32-4cb7162b76ccaa9584b63b603f47e139.png">
+
+  <title>CoderPad - Ruby</title>
+
+  <link href="//fonts.googleapis.com/css?family=Bitter:400,700|Lato:300,700" media="all" rel="stylesheet" />
+  <link href="//d146h09pbg0b1a.cloudfront.net/assets/application-c992391beaa069692384c4b76e08bd1b.css" media="all" rel="stylesheet" />
+  
+  
+</head>
+<body class="pad">
+
+  
+  
+
+  
+<div id="overlay">
+  <div>
+      <p>
+        <span>Welcome to CoderPad!</span><br>
+        Identify yourself below, if you please.
+      </p>
+      <input id="name-prompt">
+      <button id="go" class="btn btn-primary">
+        Go!
+      </button>
+  </div>
+</div>
+
+<div id="header">
+
+  <div id="header-wrapper">
+      <button
+        class="btn btn-primary tooltip-target"
+        id="run"
+        data-toggle="tooltip"
+        title="Shortcut: ctrl + enter"
+        data-placement="bottom"
+        data-html="true"
+      >
+        Run
+        <span class="fui-play"></span>
+      </button>
+
+
+    <a
+      id="settings-toggle"
+      href="#"
+      data-toggle="modal"
+      data-target="#settings-modal"
+    >
+      <span
+        class="fui-gear tooltip-target"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Pad settings"
+      ></span>
+    </a>
+
+  </div>
+</div>
+
+<div id="workspace-wrap" class="pad">
+  <div id="workspace" class="ruby">
+    <div id="editor" class="pane">
+      <span class="pane-label">Ruby Code</span>
+      <div id="editor-widget" class="codemirror-container"></div>
+    </div>
+    <div id="vertical" class="resizer"></div>
+    <div id="right-pane">
+        <div id="console-wrap" class="pane full">
+          <span class="pane-label">Console</span>
+          <div id="console"></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar">
+    <img alt="5dde501906b4898b284e8bde7b2bbd76" id="branded_logo" src="//d2t1avzf848e2j.cloudfront.net/uploads/domain/logo/5dde501906b4898b284e8bde7b2bbd76.png" />
+  <ol id="users"></ol>
+
+  <p>
+    CoderPad is a collaborative code editor with real-time execution
+     built straight into the browser.
+  </p>
+    <p>
+      This pad also supports typing commands directly into the
+      interactive shell on the right side of the screen.
+    </p>
+    <p><a href="https://plus.google.com/hangouts/_?gid=583721984460&amp;gd=https%3A%2F%2Fcoderpad.io%2F161913">Open Google Hangout</a></p>
+  </p>
+</div>
+
+
+
+
+<script>
+  window.lang     = 'ruby';
+  window.pad      = '161913';
+  window.username = null ||
+    ('Guest ' + Math.floor(Math.random() * 1000));
+  window.snippets = {"Water Pouring - Ruby":"# require 'minitest/spec'\r\n# require 'minitest/autorun'\r\n\r\n# `Empty` resets the quantity of the given glass to 0.\r\nclass Empty\r\n  attr_reader :capacities, :glass\r\n\r\n  def initialize(capacities, glass)\r\n    @capacities = capacities\r\n    @glass = glass\r\n  end\r\n\r\n  def apply(state)\r\n    state.dup.tap { |s| s[glass] = 0 }\r\n  end\r\n\r\n  def to_s\r\n    \"#\u003CEmpty #{glass}\u003E\"\r\n  end\r\n  alias_method :inspect, :to_s\r\nend\r\n\r\n# `Fill` sets the quantity of the given glass to its full capacity.\r\nclass Fill\r\n  attr_reader :capacities, :glass\r\n\r\n  def initialize(capacities, glass)\r\n    @capacities = capacities\r\n    @glass = glass\r\n  end\r\n\r\n  def apply(state)\r\n    state.dup.tap { |s| s[glass] = capacities[glass] }\r\n  end\r\n\r\n  def to_s\r\n    \"#\u003CFill #{glass}\u003E\"\r\n  end\r\n  alias_method :inspect, :to_s\r\nend\r\n\r\n# `Pour` is slightly more complex, as we need to check how much the destination glass can currently hold.\r\nclass Pour\r\n  attr_reader :capacities, :from, :to\r\n\r\n  def initialize(capacities, from, to)\r\n    @capacities = capacities\r\n    @from = from\r\n    @to = to\r\n  end\r\n\r\n  def apply(state)\r\n    # Amount of water to transfer is the smaller of the following:\r\n    # - The current quantity in the source (`from`) glass\r\n    # - The space available in the destination (`to`) glass\r\n    amount = [state[from], capacities[to] - state[to]].min\r\n    state.dup.tap do |s|\r\n      s[from] -= amount\r\n      s[to] += amount\r\n    end\r\n  end\r\n\r\n  def to_s\r\n    \"#\u003CPour #{from} -\u003E #{to}\u003E\"\r\n  end\r\n  alias_method :inspect, :to_s\r\nend\r\n\r\n# A `Sequence` encapsulates a list of actions and the final state those actions\r\n# produce. We assume that the most recently performed action is at the end of\r\n# the list.\r\nclass Sequence\r\n  attr_reader :history, :end_state\r\n\r\n  def initialize(history, end_state)\r\n    @history = history\r\n    @end_state = end_state\r\n  end\r\n\r\n  # A `Sequence` can be extended with another action. This produces a new\r\n  # `Sequence` with the action appended to the end of the history of actions,\r\n  # and a new final state generated by applying the action to the previous\r\n  # state.\r\n  def extend(action)\r\n    self.class.new(history + [action], action.apply(end_state))\r\n  end\r\n\r\n  def to_s\r\n    \"#\u003CSequence #{history.join(' ')} =\u003E #{end_state}\"\r\n  end\r\n  alias_method :inspect, :to_s\r\nend\r\n\r\nclass PouringProblem\r\n  attr_reader :capacities\r\n\r\n  def initialize(capacities)\r\n    @capacities = capacities\r\n  end\r\n\r\n  # The initial state of the problem: an array of 0's of the same length as the\r\n  # number of glasses, representing each glass being empty.\r\n  def initial_state\r\n    raise NotImplementedError\r\n  end\r\n\r\n  # A `Sequence` represents a sequence of actions taken to produce some state.\r\n  # Our initial sequence has an empty array of actions, so it produces the\r\n  # initial state.\r\n  def initial_sequence\r\n    raise NotImplementedError\r\n  end\r\n\r\n  # Produce an array of all possible actions in this problem. i.e. fill each\r\n  # glass, empty each glass, and pour from any glass into another. For details,\r\n  # see the action class definitions in actions.rb.\r\n  def actions\r\n    raise NotImplementedError\r\n  end\r\n\r\n  # Produce a `Sequence` of actions to take us from the initial state to a\r\n  # final, solved state in which one of the glasses contains the desired\r\n  # quantity.\r\n  def solve(quantity)\r\n    raise NotImplementedError\r\n  end\r\nend\r\n\r\n\r\n# Tests!\r\nproblem = PouringProblem.new([3, 4])\r\nputs \"#initial_state: is empty (0) for each glass\"\r\nputs problem.initial_state == [0, 0]\r\n\r\nputs \"#initial_sequence: has no actions\"\r\nputs problem.initial_sequence.history.empty?\r\n\r\nputs \"#initial_sequence: end state is same as the initial state\"\r\nputs problem.initial_sequence.end_state == [0, 0]\r\n\r\nputs \"#actions: produces 2n + (n * n-1) actions total\"\r\nproblem = PouringProblem.new([1,3,5])\r\nputs problem.actions.count == 12\r\n\r\nputs \"#actions: includes an Empty of each glass\"\r\nglass_indices = (0...3).to_a\r\nemptied_glasses = problem.actions.select { |action| action.is_a? Empty }.map(\u0026:glass)\r\nputs emptied_glasses == glass_indices\r\n  \r\nputs \"#actions: includes a Fill of each glass\"\r\nfilled_glasses = problem.actions.select { |action| action.is_a? Fill }.map(\u0026:glass)\r\nputs filled_glasses == glass_indices\r\n\r\nputs \"#solve: solves a simple problem\"\r\nproblem = PouringProblem.new([1, 3])\r\nsolution = problem.solve(2)\r\nputs solution.end_state.include?(2)\r\n\r\nputs \"#solve: solves a more complex problem\"\r\nproblem = PouringProblem.new([4, 9])\r\nsolution = problem.solve(7)\r\nputs solution.end_state.include?(7)\r\nputs solution.history.length == 10","Water Pouring - CoffeeScript":"assert = require('assert')\r\n\r\n# Some starter code to get us going\r\n\r\nclass Empty\r\n  constructor: (@glassIndex) -\u003E\r\n    @description = \"Empty glass #{@glassIndex}\"\r\n  \r\n  apply: (state) -\u003E\r\n    newState = state[0..-1]\r\n    newState[@glassIndex] = 0\r\n    newState\r\n\r\nclass Fill\r\n  constructor: (@capacities, @glassIndex) -\u003E\r\n    @description = \"Fill glass #{@glassIndex}\"\r\n    \r\n  apply: (state) -\u003E\r\n    newState = state[0..-1]\r\n    newState[@glassIndex] = @capacities[@glassIndex]\r\n    newState\r\n    \r\nclass Pour\r\n  constructor: (@capacities, @fromIndex, @toIndex) -\u003E\r\n    @description = \"Pour glass #{@fromIndex} into glass #{@toIndex}\"\r\n  \r\n  apply: (state) -\u003E\r\n    newState = state[0..-1]\r\n    amount = Math.min(state[@fromIndex], (@capacities[@toIndex] - state[@toIndex]))\r\n    newState[@fromIndex] -= amount\r\n    newState[@toIndex] += amount\r\n    newState\r\n  \r\nclass Sequence\r\n  constructor: (@history, @endState) -\u003E\r\n  \r\n  extend: (action) -\u003E\r\n    history = @history[0..-1]\r\n    history.push(action)\r\n    endState = action.apply(@endState)\r\n    new Sequence(history, endState)\r\n\r\n    \r\n# WRITE CODE HERE!\r\n\r\nclass PouringProblem\r\n  constructor: (@capacities) -\u003E\r\n  \r\n  initialState: -\u003E\r\n    # TODO\r\n  \r\n  initialSequence: -\u003E\r\n    # TODO\r\n  \r\n  actions: -\u003E\r\n    # TODO\r\n    \r\n  solve: (quantity) -\u003E\r\n    # TODO\r\n  \r\n\r\n# TESTS!\r\n\r\ncontains = (content, search) -\u003E\r\n  content.indexOf(search) \u003E -1\r\n\r\nproblem = new PouringProblem([1,3,5])\r\n\r\nconsole.log(\"Initial state should be all 0's\")\r\nassert.deepEqual(problem.initialState(), [0,0,0])\r\n\r\nconsole.log(\"Initial sequence should have empty history\")\r\nassert.deepEqual(problem.initialSequence().history, [])\r\n\r\nconsole.log(\"Initial sequence endState should be initialState\")\r\nassert.deepEqual(problem.initialSequence().endState, problem.initialState())\r\n\r\nactions = problem.actions()\r\ndescriptions = (action.description for action in actions).join(\"\\n\")\r\n\r\nconsole.log(\"Actions should produce 2n + (n * n-1) actions total\")\r\nassert.equal(actions.length, 12)\r\n\r\nconsole.log(\"Actions should empty every glass\")\r\nassert(contains(descriptions, \"Empty glass #{i}\"), \"Missing empty of #{i}\") for i in [0..2]\r\n  \r\nconsole.log(\"Actions should fill every glass\")\r\nassert(contains(descriptions, \"Fill glass #{i}\"), \"Missing fill of #{i}\") for i in [0..2]\r\n  \r\nconsole.log(\"Solve a simple problem\")\r\nproblem = new PouringProblem([1,3])\r\nsolution = problem.solve(2)\r\nassert(2 in solution.endState)\r\n\r\nconsole.log(\"Solve a more complex problem\")\r\nproblem = new PouringProblem([4,9])\r\nsolution = problem.solve(7)\r\nassert(7 in solution.endState)\r\nassert.equal(solution.history.length, 10)","Ruby testing setup":"require 'minitest/spec'\r\nrequire 'minitest/autorun'\r\n\r\nclass Foo\r\n  def bar\r\n    \"whee\"\r\n  end\r\nend\r\n\r\ndescribe Foo do\r\n  it \"bars\" do\r\n    Foo.new.bar.must_equal \"whee\"\r\n  end\r\nend\r\n\r\nclass TestFoo \u003C MiniTest::Unit::TestCase\r\n  def setup\r\n    @foo = Foo.new\r\n  end\r\n\r\n  def test_that_foo_can_bar\r\n    assert_equal \"whee\", @foo.bar\r\n  end\r\nend\r\n"}
+</script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+
+  
+  
+<div class="modal fade" id="switching-language-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <p>The pad's language is switching to: <span></span>&hellip;</p>
+  <p>Everyone&rsquo;s tabs will refresh shortly.</p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <h3><span class="fui-gear"></span>Pad Settings</h3>
+  <ul>
+    <li>
+      <h4>Language</h4>
+      <p>Warning: Changing the pad language will refresh the window for all participants.</p>
+      <select class="selectpicker" id="language-select" name="language-select"><option value="c">C</option>
+<option value="csharp">C#</option>
+<option value="cpp">C++</option>
+<option value="clojure">Clojure</option>
+<option value="coffeescript">CoffeeScript</option>
+<option value="go">Go</option>
+<option value="haskell">Haskell</option>
+<option value="java">Java</option>
+<option value="javascript">JavaScript</option>
+<option value="markdown">Markdown</option>
+<option value="objc">Objective-C</option>
+<option value="php">PHP</option>
+<option value="perl">Perl</option>
+<option value="python">Python</option>
+<option selected="selected" value="ruby">Ruby</option>
+<option value="scala">Scala</option></select>
+    </li>
+    <li>
+      <h4>Tab &nbsp;Spacing</h4>
+      <p>Control the number of spaces used for indentation.</p>
+      <select class="selectpicker" id="tab-type-select" name="tab-type-select"><option selected="selected" value="2">2 Space Tabs</option>
+<option value="4">4 Space Tabs</option>
+<option value="8">8 Space Tabs</option></select>
+    </li>
+  </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    <div class="modal-body clearfix">
+      <h4>Choose the language for your new pad:</h4>
+
+      <form accept-charset="UTF-8" action="/" class="new_pad" id="new_pad" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <div class="clearfix">
+            <ul>
+              <li class="header">Interpreted</li>
+                <li>
+                  <input id="pad_language_coffeescript" name="pad[language]" type="radio" value="coffeescript" />
+                  <label for="pad_language_coffeescript">CoffeeScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_javascript" name="pad[language]" type="radio" value="javascript" />
+                  <label for="pad_language_javascript">JavaScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_perl" name="pad[language]" type="radio" value="perl" />
+                  <label for="pad_language_perl">Perl</label>
+                </li>
+                <li>
+                  <input id="pad_language_php" name="pad[language]" type="radio" value="php" />
+                  <label for="pad_language_php">PHP</label>
+                </li>
+                <li>
+                  <input id="pad_language_python" name="pad[language]" type="radio" value="python" />
+                  <label for="pad_language_python">Python</label>
+                </li>
+                <li>
+                  <input checked="checked" id="pad_language_ruby" name="pad[language]" type="radio" value="ruby" />
+                  <label for="pad_language_ruby">Ruby</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Compiled</li>
+                <li>
+                  <input id="pad_language_c" name="pad[language]" type="radio" value="c" />
+                  <label for="pad_language_c">C</label>
+                </li>
+                <li>
+                  <input id="pad_language_clojure" name="pad[language]" type="radio" value="clojure" />
+                  <label for="pad_language_clojure">Clojure</label>
+                </li>
+                <li>
+                  <input id="pad_language_cpp" name="pad[language]" type="radio" value="cpp" />
+                  <label for="pad_language_cpp">C++</label>
+                </li>
+                <li>
+                  <input id="pad_language_csharp" name="pad[language]" type="radio" value="csharp" />
+                  <label for="pad_language_csharp">C#</label>
+                </li>
+                <li>
+                  <input id="pad_language_go" name="pad[language]" type="radio" value="go" />
+                  <label for="pad_language_go">Go</label>
+                </li>
+                <li>
+                  <input id="pad_language_haskell" name="pad[language]" type="radio" value="haskell" />
+                  <label for="pad_language_haskell">Haskell</label>
+                </li>
+                <li>
+                  <input id="pad_language_java" name="pad[language]" type="radio" value="java" />
+                  <label for="pad_language_java">Java</label>
+                </li>
+                <li>
+                  <input id="pad_language_objc" name="pad[language]" type="radio" value="objc" />
+                  <label for="pad_language_objc">Objective-C</label>
+                </li>
+                <li>
+                  <input id="pad_language_scala" name="pad[language]" type="radio" value="scala" />
+                  <label for="pad_language_scala">Scala</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Documents</li>
+                <li>
+                  <input id="pad_language_markdown" name="pad[language]" type="radio" value="markdown" />
+                  <label for="pad_language_markdown">Markdown</label>
+                </li>
+            </ul>
+        </div>
+        <p>
+          <input class="btn btn-primary" name="commit" type="submit" value="Create Pad" /> or
+          <input class="btn btn-primary" name="commit" type="submit" value="Launch Google Hangout" />
+        </p>
+</form>    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="//cdn.ravenjs.com/1.1.2/jquery,native/raven.min.js"></script>
+    <script>
+      Raven.config('https://4d747205c6ed435c889710eaead44e12@app.getsentry.com/10579', {
+        includePaths: [
+          /localhost/,
+          /coderpad\.io/,
+          /vincentwoo\.com/,
+          /d146h09pbg0b1a\.cloudfront/
+        ],
+        ignoreUrls: [
+          /graph\.facebook\.com/i,
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          /eatdifferent\.com\.woopra-ns\.com/i,
+          /static\.woopra\.com\/js\/woopra\.js/i,
+          /extensions\//i,
+          /^chrome:\/\//i,
+          /127\.0\.0\.1:4001\/isrunning/i,
+          /webappstoolbarba\.texthelp\.com\//i,
+          /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
+        ]
+      }).install();
+    </script>
+  <script src="//d146h09pbg0b1a.cloudfront.net/assets/application-ac1fc5b18aff7c11b7c357930bb008e9.js"></script>
+</body>
+</html>

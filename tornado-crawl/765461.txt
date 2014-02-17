@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- CoderPad (c) 2013 Vincent Woo -->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","errorBeacon":"jserror.newrelic.com","licenseKey":"586aeabffa","applicationID":"2434573","transactionName":"cF5XTRNfXF9VQxkSVVdCFkoJX0c=","queueTime":20,"applicationTime":99,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-314.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function a(b,c,d){function e(f){if(!c[f]){var g=c[f]={exports:{}};b[f][0].call(g.exports,function(a){var c=b[f][1][a];return e(c?c:a)},g,g.exports,a,b,c,d)}return c[f].exports}for(var f=0;f<d.length;f++)e(d[f]);return e}({"4O2Y62":[function(a,b){function c(a,b){var c=d[a];return c?c.apply(this,b):(e[a]||(e[a]=[]),void e[a].push(b))}var d={},e={};b.exports=c,c.queues=e,c.handlers=d},{}],handle:[function(a,b){b.exports=a("4O2Y62")},{}],YLUGVp:[function(a,b){function c(){var a=m.info=NREUM.info;if(a&&a.agent&&a.licenseKey&&a.applicationID){m.proto="https"===l.split(":")[0]||a.sslForHttp?"https://":"http://",g("mark",["onload",f()]);var b=i.createElement("script");b.src=m.proto+a.agent,i.body.appendChild(b)}}function d(){"complete"===i.readyState&&e()}function e(){g("mark",["domContent",f()])}function f(){return(new Date).getTime()}var g=a("handle"),h=window,i=h.document,j="addEventListener",k="attachEvent",l=(""+location).split("?")[0],m=b.exports={offset:f(),origin:l};i[j]?(i[j]("DOMContentLoaded",e,!1),h[j]("load",c,!1)):(i[k]("onreadystatechange",d),h[k]("onload",c)),g("mark",["firstbyte",f()])},{handle:"4O2Y62"}],loader:[function(a,b){b.exports=a("YLUGVp")},{}]},{},["YLUGVp"]);</script>
+  <meta name="description"
+    content="CoderPad is the best tool available for conducting programming phone screen interviews. Edit code and run it with your candidate, realtime in the browser.">
+  <link rel="shortcut icon" href="//d146h09pbg0b1a.cloudfront.net/assets/coderpad_logo_32x32-4cb7162b76ccaa9584b63b603f47e139.png">
+
+  <title>CoderPad - C</title>
+
+  <link href="//fonts.googleapis.com/css?family=Bitter:400,700|Lato:300,700" media="all" rel="stylesheet" />
+  <link href="//d146h09pbg0b1a.cloudfront.net/assets/application-c992391beaa069692384c4b76e08bd1b.css" media="all" rel="stylesheet" />
+  
+  
+</head>
+<body class="pad">
+
+  
+  
+
+  
+<div id="overlay">
+  <div>
+      <p>
+        <span>Welcome to CoderPad!</span><br>
+        Identify yourself below, if you please.
+      </p>
+      <input id="name-prompt">
+      <button id="go" class="btn btn-primary">
+        Go!
+      </button>
+  </div>
+</div>
+
+<div id="header">
+
+  <div id="header-wrapper">
+      <button
+        class="btn btn-primary tooltip-target"
+        id="run"
+        data-toggle="tooltip"
+        title="Shortcut: ctrl + enter"
+        data-placement="bottom"
+        data-html="true"
+      >
+        Run
+        <span class="fui-play"></span>
+      </button>
+
+
+    <a
+      id="settings-toggle"
+      href="#"
+      data-toggle="modal"
+      data-target="#settings-modal"
+    >
+      <span
+        class="fui-gear tooltip-target"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Pad settings"
+      ></span>
+    </a>
+
+  </div>
+</div>
+
+<div id="workspace-wrap" class="pad">
+  <div id="workspace" class="c">
+    <div id="editor" class="pane">
+      <span class="pane-label">C Code</span>
+      <div id="editor-widget" class="codemirror-container"></div>
+    </div>
+    <div id="vertical" class="resizer"></div>
+    <div id="right-pane">
+        <div id="execution-log" class="pane full">
+          <span class="pane-label">Results</span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar">
+    <img alt="14af60b11d16e7ec0f3ecfa7a7087198" id="branded_logo" src="//d2t1avzf848e2j.cloudfront.net/uploads/domain/logo/14af60b11d16e7ec0f3ecfa7a7087198.png" />
+  <ol id="users"></ol>
+
+  <p>
+    CoderPad is a collaborative code editor with real-time execution
+     built straight into the browser.
+  </p>
+    <p><a href="https://plus.google.com/hangouts/_?gid=583721984460&amp;gd=https%3A%2F%2Fcoderpad.io%2F765461">Open Google Hangout</a></p>
+  </p>
+</div>
+
+
+
+
+<script>
+  window.lang     = 'c';
+  window.pad      = '765461';
+  window.username = null ||
+    ('Guest ' + Math.floor(Math.random() * 1000));
+  window.snippets = {"FindInClone":"// Copyright 2004-present Facebook. All Rights Reserved.\r\n// Clang 3.5 running with ARC and non-fragile ABI\r\n\r\n#import \u003CFoundation/Foundation.h\u003E\r\n\r\n#import_snippet FindInCloneHelper\r\n\r\nint main(int argc, const char * argv[]) {\r\n  @autoreleasepool {\r\n    // UIViewRandomHierarchy returns a new randomly generated UIView hierarchy\r\n    // Uses a seed value to build the tree, some good seeds: 0, 3, 7, 18, 31, 37\r\n    UIView *root = UIViewRandomHierarchy(31);\r\n\r\n    // UIViewRandomSubview returns a randomly selected UIView contained within\r\n    // the provided hierarchy. Uses a seed value to pick the view.\r\n    UIView *selected = UIViewRandomSubview(0, root);\r\n\r\n    // UIViewDeepClone makes a deep copy of this view hierarchy.\r\n    UIView *rootClone = UIViewDeepClone(root);\r\n\r\n    // Provided the root of a UIView hierarchy 'A', a selected UIView from within\r\n    // that hierarchy 'E', and a clone of that hierarchy 'A`', find and return the\r\n    // selected view's clone 'E`' from within the root clone's hierarchy.\r\n    //\r\n    //      A            A`\r\n    //     / \\          / \\\r\n    //    B   C        B`  C`\r\n    //   /   / \\      /   / \\\r\n    //  D   E   F    D`  E`  F`\r\n    //\r\n    UIView *selectedClone; // TODO: Implement!\r\n\r\n    NSLog(@\"Original: \\n%@\", NSStringFromUIView(root, selected));\r\n    NSLog(@\"Clone: \\n%@\", NSStringFromUIView(rootClone, selectedClone));\r\n  }\r\n}\r\n","FindInCloneHelper":"// Copyright 2004-present Facebook. All Rights Reserved.\r\n\r\n/**\r\n UNDER NO CIRCUMSTANCES SHOULD A CANDIDATE SEE THIS FILE.\r\n Helper functions for Lee Byron's FindNodeInClone interview question.\r\n */\r\n\r\n#import \u003Cstdlib.h\u003E\r\n\r\n#import \u003CFoundation/Foundation.h\u003E\r\n\r\n/**\r\n Contrived clone of \u003CUIKit/UIView.h\u003E\r\n */\r\n@interface UIView : NSObject \u003CNSCoding\u003E\r\n@property (nonatomic, readonly, copy) NSArray *subviews;\r\n@property (nonatomic, readonly) UIView *superview;\r\n- (void)addSubview:(UIView *)view;\r\n@end\r\n\r\n/**\r\n Returns a view hierarchy and selects a single view from within the hierarchy.\r\n */\r\nUIView *UIViewRandomHierarchy(int seed);\r\n\r\n/**\r\n Returns a random view (or subview, or subsubview) within the hierarchy.\r\n */\r\nUIView *UIViewRandomSubview(int seed, UIView *root);\r\n\r\n/**\r\n Makes a deep copy of a view hierarchy\r\n */\r\nUIView *UIViewDeepClone(UIView *rootView);\r\n\r\n/**\r\n Helper to visualize our UIView hierarchy in the console.\r\n */\r\nNSString *NSStringFromUIView(UIView *rootView, UIView *highlightView);\r\n\r\n\r\n\r\n// FindInCloneHelpers.m\r\n\r\ndouble _rand_double() {\r\n  double r = rand() * (1.0 / (RAND_MAX + 1.0));\r\n  return r;\r\n}\r\n\r\nint _rand_int(int min, int max) {\r\n  int d = max - min + 1;\r\n  int r = min + floor(_rand_double() * d);\r\n  return r;\r\n}\r\n\r\ndouble _normalish(double range) {\r\n  range = range * 2 - 1;\r\n  return (range + range*range*range) * 0.25 + 0.5;\r\n}\r\n\r\nint _rand_int_normalish(int min, int max) {\r\n  int d = max - min + 1;\r\n  int r = min + floor(_normalish(_rand_double()) * d);\r\n  return r;\r\n}\r\n\r\nbool _rand_chance(int oneInMany) {\r\n  bool odds = _rand_int(1, oneInMany) == 1;\r\n  return odds;\r\n}\r\n\r\nUIView *_UIViewRandomHierarchy(int depth) {\r\n  UIView *view = [[UIView alloc] init];\r\n  int subviewCount = _rand_chance((float)depth * (float)depth/3) ? _rand_int_normalish(MAX(0, 3 - depth), 4) : 0;\r\n  for (int ii = 0; ii \u003C subviewCount; ii++) {\r\n    [view addSubview:_UIViewRandomHierarchy(depth + 1)];\r\n  }\r\n  return view;\r\n}\r\n\r\nUIView *UIViewRandomHierarchy(int seed) {\r\n  srand(seed);\r\n  return _UIViewRandomHierarchy(1);\r\n}\r\n\r\nvoid _UIViewRandomSubview(UIView *view, UIView **selectedView, int *totalViews) {\r\n  (*totalViews)++;\r\n  if (_rand_chance(*totalViews)) {\r\n    *selectedView = view;\r\n  }\r\n  for (UIView *subview in view.subviews) {\r\n    _UIViewRandomSubview(subview, selectedView, totalViews);\r\n  }\r\n}\r\n\r\nUIView *UIViewRandomSubview(int seed, UIView *root) {\r\n  srand(seed);\r\n  int totalViews = 0;\r\n  UIView *selectedView;\r\n  _UIViewRandomSubview(root, \u0026selectedView, \u0026totalViews);\r\n  return selectedView;\r\n}\r\n\r\nUIView *UIViewDeepClone(UIView *rootView) {\r\n  return [NSKeyedUnarchiver unarchiveObjectWithData:\r\n          [NSKeyedArchiver archivedDataWithRootObject:rootView]];\r\n}\r\n\r\nint _totalWidth(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 3;\r\n  }\r\n  int width = 0;\r\n  for (UIView *subview in view.subviews) {\r\n    width += _totalWidth(subview);\r\n  }\r\n  return width;\r\n}\r\n\r\nint _subviewWidth(UIView *view);\r\n\r\nint _subviewLeftMargin(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 0;\r\n  }\r\n  return _subviewLeftMargin(view.subviews[0]) + floor((float)_subviewWidth(view) / 2);\r\n}\r\n\r\nint _subviewRightMargin(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 2;\r\n  }\r\n  return _subviewRightMargin(view.subviews.lastObject) + ceil((float)_subviewWidth(view) / 2) - 1;\r\n}\r\n\r\nint _subviewWidth(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 1;\r\n  }\r\n  return _totalWidth(view) - _subviewLeftMargin(view.subviews[0]) - _subviewRightMargin(view.subviews.lastObject);\r\n}\r\n\r\nNSString *_strRepeat(NSString *str, int times) {\r\n  return [@\"\" stringByPaddingToLength:times withString:str startingAtIndex:0];\r\n}\r\n\r\nNSString *NSStringFromUIView(UIView *rootView, UIView *highlightView) {\r\n  NSMutableString *representation = [NSMutableString string];\r\n  if (!rootView) {\r\n    return representation;\r\n  }\r\n  NSMutableArray *level = [NSMutableArray arrayWithObject:@[rootView]];\r\n  NSMutableArray *offsets = [NSMutableArray arrayWithObject:@0];\r\n  NSMutableArray *nextLevel;\r\n  NSMutableArray *nextOffsets;\r\n  while (level.count \u003E 0) {\r\n    nextLevel = [NSMutableArray array];\r\n    nextOffsets = [NSMutableArray array];\r\n    NSMutableString *strLevel1 = [NSMutableString string];\r\n    NSMutableString *strLevel2 = [NSMutableString string];\r\n    int nextOffset = 0;\r\n    for (int ii = 0; ii \u003C level.count; ii++) {\r\n      NSArray *children = level[ii];\r\n\r\n      int offset = [offsets[ii] intValue];\r\n      if (offset \u003E 0) {\r\n        [strLevel1 appendString:_strRepeat(@\" \", offset * 3)];\r\n        [strLevel2 appendString:_strRepeat(@\" \", offset * 3)];\r\n      }\r\n\r\n      int leftMargin = _subviewLeftMargin(children[0]);\r\n      [strLevel1 appendString:_strRepeat(@\" \", leftMargin)];\r\n      [strLevel2 appendString:_strRepeat(@\" \", leftMargin)];\r\n\r\n      nextOffset += offset;\r\n      for (int jj = 0; jj \u003C children.count; jj++) {\r\n        UIView *view = children[jj];\r\n        if (view.subviews.count \u003E 0) {\r\n          [nextLevel addObject:view.subviews];\r\n          [nextOffsets addObject:@(nextOffset)];\r\n          nextOffset = 0;\r\n        } else {\r\n          nextOffset++;\r\n        }\r\n        [strLevel1 appendString:view == highlightView ? @\"X\" : @\"O\"];\r\n        [strLevel2 appendString:view.subviews.count \u003E 0 ? @\"|\" : @\" \"];\r\n        if (jj + 1 != children.count) {\r\n          int margin = _subviewRightMargin(view) + _subviewLeftMargin(children[jj+1]);\r\n          [strLevel1 appendString:_strRepeat(@\"-\", margin)];\r\n          [strLevel2 appendString:_strRepeat(@\" \", margin)];\r\n        }\r\n      }\r\n      if (ii + 1 != level.count) {\r\n        int rightMargin = _subviewRightMargin(children.lastObject);\r\n        [strLevel1 appendString:_strRepeat(@\" \", rightMargin)];\r\n        [strLevel2 appendString:_strRepeat(@\" \", rightMargin)];\r\n      }\r\n    }\r\n    [representation appendFormat:@\"%@\\n\", strLevel1];\r\n    if (nextLevel.count) {\r\n      [representation appendFormat:@\"%@\\n\", strLevel2];\r\n    }\r\n    level = nextLevel;\r\n    offsets = nextOffsets;\r\n  }\r\n  return [representation copy];\r\n}\r\n\r\n@implementation UIView\r\n{\r\n  NSMutableArray *_subviews;\r\n}\r\n\r\n- (instancetype)init\r\n{\r\n  if (self = [super init]) {\r\n    _subviews = [NSMutableArray array];\r\n  }\r\n  return self;\r\n}\r\n\r\n- (instancetype)initWithCoder:(NSCoder *)aDecoder\r\n{\r\n  if (self = [super init]) {\r\n    _superview = [aDecoder decodeObject];\r\n    _subviews = [aDecoder decodeObject];\r\n  }\r\n  return self;\r\n}\r\n\r\n- (void)encodeWithCoder:(NSCoder *)aCoder\r\n{\r\n  [aCoder encodeObject:_superview];\r\n  [aCoder encodeObject:_subviews];\r\n}\r\n\r\n- (NSArray *)subviews\r\n{\r\n  return [_subviews copy];\r\n}\r\n\r\n- (void)addSubview:(UIView *)view\r\n{\r\n  [view _willMoveToSuperview:self];\r\n  [_subviews addObject:view];\r\n}\r\n\r\n- (void)_willMoveToSuperview:(UIView *)view\r\n{\r\n  _superview = view;\r\n}\r\n\r\n@end\r\n","Find Node in Clone":"// Clang 3.5 running with ARC and non-fragile ABI\r\n\r\n#import \u003CFoundation/Foundation.h\u003E\r\n\r\n/**\r\n Contrived clone of \u003CUIKit/UIView.h\u003E\r\n */\r\n@interface UIView : NSObject \u003CNSCoding\u003E\r\n@property(nonatomic, readonly, copy) NSArray *subviews;\r\n@property(nonatomic, readonly) UIView *superview;\r\n- (void)addSubview:(UIView *)view;\r\n@end\r\n\r\n/**\r\n Returns a view hierarchy and selects a single view from within the hierarchy.\r\n */\r\nUIView *UIViewRandomHierarchy(int seed, UIView **selectedView);\r\n\r\n/**\r\n Makes a deep copy of a view hierarchy\r\n */\r\nUIView *UIViewDeepClone(UIView *rootView);\r\n\r\n/**\r\n Helper to visualize our UIView hierarchy in the console.\r\n */\r\nNSString *NSStringFromUIView(UIView *rootView, UIView *highlightView);\r\n\r\n\r\n\r\nint main (int argc, const char * argv[]) {\r\n  @autoreleasepool {\r\n    // UIViewTestHierarchyMake returns a new view hierarchy and selects a single view\r\n    // from within the hierarchy.\r\n    // Uses a seed value to build the tree, some good seeds: 6, 11, 13, 53, 58, 63\r\n    UIView *selected;\r\n    UIView *root = UIViewRandomHierarchy(13, \u0026selected);\r\n\r\n    // Then we make a deep copy of this view hierarchy.\r\n    UIView *rootClone = UIViewDeepClone(root);\r\n\r\n    // Provided the root of a UIView hierarchy, the selected UIView from within that\r\n    // hierarchy, and a clone of that hierarchy, find and return the selected view's\r\n    // clone from within the root clone's hierarchy.\r\n    UIView *selectedClone; // TODO: Implement!\r\n\r\n    NSLog(@\"Original:\\n%@\", NSStringFromUIView(root, selected));\r\n    NSLog(@\"Clone:\\n%@\", NSStringFromUIView(rootClone, selectedClone));\r\n  }\r\n}\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n// No need to go down here\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n// No really, scroll back up.\r\n\r\n#import \u003Cstdlib.h\u003E\r\n\r\n\r\n\r\n\r\n// FindInCloneHelpers.m\r\n\r\ndouble _rand_double() {\r\n  double r = rand() * (1.0 / (RAND_MAX + 1.0));\r\n  return r;\r\n}\r\n\r\nint _rand_int(int min, int max) {\r\n  int d = max - min + 1;\r\n  int r = min + floor(_rand_double() * d);\r\n  return r;\r\n}\r\n\r\nbool _rand_chance(int oneInMany) {\r\n  bool odds = _rand_int(1, oneInMany) == 1;\r\n  return odds;\r\n}\r\n\r\nUIView *_UIViewRandomHierarchy(UIView **selectedView, int depth, int *totalViews) {\r\n  UIView *view = [[UIView alloc] init];\r\n  (*totalViews)++;\r\n\r\n  if (_rand_chance(*totalViews)) {\r\n    *selectedView = view;\r\n  }\r\n  int subviewCount = depth == 0 || _rand_chance(depth * depth) ? _rand_int(1, 4) : 0;\r\n  for (int ii = 0; ii \u003C subviewCount; ii++) {\r\n    [view addSubview:_UIViewRandomHierarchy(selectedView, depth + 1, totalViews)];\r\n  }\r\n  return view;\r\n}\r\n\r\nUIView *UIViewRandomHierarchy(int seed, UIView **selectedView) {\r\n  srand(seed);\r\n  int totalViews = 0;\r\n  return _UIViewRandomHierarchy(selectedView, 0, \u0026totalViews);\r\n}\r\n\r\nUIView *UIViewDeepClone(UIView *rootView) {\r\n  return [NSKeyedUnarchiver unarchiveObjectWithData:\r\n          [NSKeyedArchiver archivedDataWithRootObject:rootView]];\r\n}\r\n\r\nint _totalWidth(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 3;\r\n  }\r\n  int width = 0;\r\n  for (UIView *subview in view.subviews) {\r\n    width += _totalWidth(subview);\r\n  }\r\n  return width;\r\n}\r\n\r\nint _subviewWidth(UIView *view);\r\n\r\nint _subviewLeftMargin(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 0;\r\n  }\r\n  return _subviewLeftMargin(view.subviews[0]) + floor((float)_subviewWidth(view) / 2);\r\n}\r\n\r\nint _subviewRightMargin(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 2;\r\n  }\r\n  return _subviewRightMargin(view.subviews.lastObject) + ceil((float)_subviewWidth(view) / 2) - 1;\r\n}\r\n\r\nint _subviewWidth(UIView *view) {\r\n  if (view.subviews.count == 0) {\r\n    return 1;\r\n  }\r\n  return _totalWidth(view) - _subviewLeftMargin(view.subviews[0]) - _subviewRightMargin(view.subviews.lastObject);\r\n}\r\n\r\nNSString *_strRepeat(NSString *str, int times) {\r\n  return [@\"\" stringByPaddingToLength:times withString:str startingAtIndex:0];\r\n}\r\n\r\nNSString *NSStringFromUIView(UIView *rootView, UIView *highlightView) {\r\n  NSMutableString *representation = [NSMutableString string];\r\n  if (!rootView) {\r\n    return representation;\r\n  }\r\n  NSMutableArray *level = [NSMutableArray arrayWithObject:@[rootView]];\r\n  NSMutableArray *offsets = [NSMutableArray arrayWithObject:@(0)];\r\n  NSMutableArray *nextLevel;\r\n  NSMutableArray *nextOffsets;\r\n  while (level.count \u003E 0) {\r\n    nextLevel = [NSMutableArray array];\r\n    nextOffsets = [NSMutableArray array];\r\n    NSMutableString *strLevel1 = [NSMutableString string];\r\n    NSMutableString *strLevel2 = [NSMutableString string];\r\n    int nextOffset = 0;\r\n    for (int ii = 0; ii \u003C level.count; ii++) {\r\n      NSArray *children = level[ii];\r\n\r\n      int offset = [offsets[ii] intValue];\r\n      if (offset \u003E 0) {\r\n        [strLevel1 appendString:_strRepeat(@\" \", offset * 3)];\r\n        [strLevel2 appendString:_strRepeat(@\" \", offset * 3)];\r\n      }\r\n\r\n      int leftMargin = _subviewLeftMargin(children[0]);\r\n      [strLevel1 appendString:_strRepeat(@\" \", leftMargin)];\r\n      [strLevel2 appendString:_strRepeat(@\" \", leftMargin)];\r\n\r\n      nextOffset += offset;\r\n      for (int jj = 0; jj \u003C children.count; jj++) {\r\n        UIView *view = children[jj];\r\n        if (view.subviews.count \u003E 0) {\r\n          [nextLevel addObject:view.subviews];\r\n          [nextOffsets addObject:@(nextOffset)];\r\n          nextOffset = 0;\r\n        } else {\r\n          nextOffset++;\r\n        }\r\n        [strLevel1 appendString:view == highlightView ? @\"X\" : @\"O\"];\r\n        [strLevel2 appendString:view.subviews.count \u003E 0 ? @\"|\" : @\" \"];\r\n        if (jj + 1 \u003C children.count) {\r\n          int margin = _subviewRightMargin(view) + _subviewLeftMargin(children[jj+1]);\r\n          [strLevel1 appendString:_strRepeat(@\"-\", margin)];\r\n          [strLevel2 appendString:_strRepeat(@\" \", margin)];\r\n        }\r\n      }\r\n      int rightMargin = _subviewRightMargin(children.lastObject);\r\n      [strLevel1 appendString:_strRepeat(@\" \", rightMargin)];\r\n      [strLevel2 appendString:_strRepeat(@\" \", rightMargin)];\r\n    }\r\n    [representation appendFormat:@\"%@\\n\", strLevel1];\r\n    if (nextLevel.count) {\r\n      [representation appendFormat:@\"%@\\n\", strLevel2];\r\n    }\r\n    level = nextLevel;\r\n    offsets = nextOffsets;\r\n  }\r\n  return [representation copy];\r\n}\r\n\r\n@implementation UIView\r\n{\r\n  NSMutableArray *_subviews;\r\n}\r\n\r\n- (instancetype)init\r\n{\r\n  if (self = [super init]) {\r\n    _subviews = [NSMutableArray array];\r\n  }\r\n  return self;\r\n}\r\n\r\n- (instancetype)initWithCoder:(NSCoder *)aDecoder\r\n{\r\n  if (self = [super init]) {\r\n    _superview = [aDecoder decodeObject];\r\n    _subviews = [aDecoder decodeObject];\r\n  }\r\n  return self;\r\n}\r\n\r\n- (void)encodeWithCoder:(NSCoder *)aCoder\r\n{\r\n  [aCoder encodeObject:_superview];\r\n  [aCoder encodeObject:_subviews];\r\n}\r\n\r\n- (NSArray *)subviews\r\n{\r\n  return [_subviews copy];\r\n}\r\n\r\n- (void)addSubview:(UIView *)view\r\n{\r\n  [view _willMoveToSuperview:self];\r\n  [_subviews addObject:view];\r\n}\r\n\r\n- (void)_willMoveToSuperview:(UIView *)view\r\n{\r\n  _superview = view;\r\n}\r\n\r\n@end\r\n"}
+</script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+
+  
+  
+<div class="modal fade" id="switching-language-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <p>The pad's language is switching to: <span></span>&hellip;</p>
+  <p>Everyone&rsquo;s tabs will refresh shortly.</p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <h3><span class="fui-gear"></span>Pad Settings</h3>
+  <ul>
+    <li>
+      <h4>Language</h4>
+      <p>Warning: Changing the pad language will refresh the window for all participants.</p>
+      <select class="selectpicker" id="language-select" name="language-select"><option selected="selected" value="c">C</option>
+<option value="csharp">C#</option>
+<option value="cpp">C++</option>
+<option value="clojure">Clojure</option>
+<option value="coffeescript">CoffeeScript</option>
+<option value="go">Go</option>
+<option value="haskell">Haskell</option>
+<option value="java">Java</option>
+<option value="javascript">JavaScript</option>
+<option value="markdown">Markdown</option>
+<option value="objc">Objective-C</option>
+<option value="php">PHP</option>
+<option value="perl">Perl</option>
+<option value="python">Python</option>
+<option value="ruby">Ruby</option>
+<option value="scala">Scala</option></select>
+    </li>
+    <li>
+      <h4>Tab &nbsp;Spacing</h4>
+      <p>Control the number of spaces used for indentation.</p>
+      <select class="selectpicker" id="tab-type-select" name="tab-type-select"><option selected="selected" value="2">2 Space Tabs</option>
+<option value="4">4 Space Tabs</option>
+<option value="8">8 Space Tabs</option></select>
+    </li>
+  </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    <div class="modal-body clearfix">
+      <h4>Choose the language for your new pad:</h4>
+
+      <form accept-charset="UTF-8" action="/" class="new_pad" id="new_pad" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <div class="clearfix">
+            <ul>
+              <li class="header">Interpreted</li>
+                <li>
+                  <input id="pad_language_coffeescript" name="pad[language]" type="radio" value="coffeescript" />
+                  <label for="pad_language_coffeescript">CoffeeScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_javascript" name="pad[language]" type="radio" value="javascript" />
+                  <label for="pad_language_javascript">JavaScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_perl" name="pad[language]" type="radio" value="perl" />
+                  <label for="pad_language_perl">Perl</label>
+                </li>
+                <li>
+                  <input id="pad_language_php" name="pad[language]" type="radio" value="php" />
+                  <label for="pad_language_php">PHP</label>
+                </li>
+                <li>
+                  <input id="pad_language_python" name="pad[language]" type="radio" value="python" />
+                  <label for="pad_language_python">Python</label>
+                </li>
+                <li>
+                  <input checked="checked" id="pad_language_ruby" name="pad[language]" type="radio" value="ruby" />
+                  <label for="pad_language_ruby">Ruby</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Compiled</li>
+                <li>
+                  <input id="pad_language_c" name="pad[language]" type="radio" value="c" />
+                  <label for="pad_language_c">C</label>
+                </li>
+                <li>
+                  <input id="pad_language_clojure" name="pad[language]" type="radio" value="clojure" />
+                  <label for="pad_language_clojure">Clojure</label>
+                </li>
+                <li>
+                  <input id="pad_language_cpp" name="pad[language]" type="radio" value="cpp" />
+                  <label for="pad_language_cpp">C++</label>
+                </li>
+                <li>
+                  <input id="pad_language_csharp" name="pad[language]" type="radio" value="csharp" />
+                  <label for="pad_language_csharp">C#</label>
+                </li>
+                <li>
+                  <input id="pad_language_go" name="pad[language]" type="radio" value="go" />
+                  <label for="pad_language_go">Go</label>
+                </li>
+                <li>
+                  <input id="pad_language_haskell" name="pad[language]" type="radio" value="haskell" />
+                  <label for="pad_language_haskell">Haskell</label>
+                </li>
+                <li>
+                  <input id="pad_language_java" name="pad[language]" type="radio" value="java" />
+                  <label for="pad_language_java">Java</label>
+                </li>
+                <li>
+                  <input id="pad_language_objc" name="pad[language]" type="radio" value="objc" />
+                  <label for="pad_language_objc">Objective-C</label>
+                </li>
+                <li>
+                  <input id="pad_language_scala" name="pad[language]" type="radio" value="scala" />
+                  <label for="pad_language_scala">Scala</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Documents</li>
+                <li>
+                  <input id="pad_language_markdown" name="pad[language]" type="radio" value="markdown" />
+                  <label for="pad_language_markdown">Markdown</label>
+                </li>
+            </ul>
+        </div>
+        <p>
+          <input class="btn btn-primary" name="commit" type="submit" value="Create Pad" /> or
+          <input class="btn btn-primary" name="commit" type="submit" value="Launch Google Hangout" />
+        </p>
+</form>    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="//cdn.ravenjs.com/1.1.2/jquery,native/raven.min.js"></script>
+    <script>
+      Raven.config('https://4d747205c6ed435c889710eaead44e12@app.getsentry.com/10579', {
+        includePaths: [
+          /localhost/,
+          /coderpad\.io/,
+          /vincentwoo\.com/,
+          /d146h09pbg0b1a\.cloudfront/
+        ],
+        ignoreUrls: [
+          /graph\.facebook\.com/i,
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          /eatdifferent\.com\.woopra-ns\.com/i,
+          /static\.woopra\.com\/js\/woopra\.js/i,
+          /extensions\//i,
+          /^chrome:\/\//i,
+          /127\.0\.0\.1:4001\/isrunning/i,
+          /webappstoolbarba\.texthelp\.com\//i,
+          /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
+        ]
+      }).install();
+    </script>
+  <script src="//d146h09pbg0b1a.cloudfront.net/assets/application-ac1fc5b18aff7c11b7c357930bb008e9.js"></script>
+</body>
+</html>

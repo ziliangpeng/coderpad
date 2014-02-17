@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!-- CoderPad (c) 2013 Vincent Woo -->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","errorBeacon":"jserror.newrelic.com","licenseKey":"586aeabffa","applicationID":"2434573","transactionName":"cF5XTRNfXF9VQxkSVVdCFkoJX0c=","queueTime":49,"applicationTime":272,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-314.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function a(b,c,d){function e(f){if(!c[f]){var g=c[f]={exports:{}};b[f][0].call(g.exports,function(a){var c=b[f][1][a];return e(c?c:a)},g,g.exports,a,b,c,d)}return c[f].exports}for(var f=0;f<d.length;f++)e(d[f]);return e}({"4O2Y62":[function(a,b){function c(a,b){var c=d[a];return c?c.apply(this,b):(e[a]||(e[a]=[]),void e[a].push(b))}var d={},e={};b.exports=c,c.queues=e,c.handlers=d},{}],handle:[function(a,b){b.exports=a("4O2Y62")},{}],YLUGVp:[function(a,b){function c(){var a=m.info=NREUM.info;if(a&&a.agent&&a.licenseKey&&a.applicationID){m.proto="https"===l.split(":")[0]||a.sslForHttp?"https://":"http://",g("mark",["onload",f()]);var b=i.createElement("script");b.src=m.proto+a.agent,i.body.appendChild(b)}}function d(){"complete"===i.readyState&&e()}function e(){g("mark",["domContent",f()])}function f(){return(new Date).getTime()}var g=a("handle"),h=window,i=h.document,j="addEventListener",k="attachEvent",l=(""+location).split("?")[0],m=b.exports={offset:f(),origin:l};i[j]?(i[j]("DOMContentLoaded",e,!1),h[j]("load",c,!1)):(i[k]("onreadystatechange",d),h[k]("onload",c)),g("mark",["firstbyte",f()])},{handle:"4O2Y62"}],loader:[function(a,b){b.exports=a("YLUGVp")},{}]},{},["YLUGVp"]);</script>
+  <meta name="description"
+    content="CoderPad is the best tool available for conducting programming phone screen interviews. Edit code and run it with your candidate, realtime in the browser.">
+  <link rel="shortcut icon" href="//d146h09pbg0b1a.cloudfront.net/assets/coderpad_logo_32x32-4cb7162b76ccaa9584b63b603f47e139.png">
+
+  <title>CoderPad - C++</title>
+
+  <link href="//fonts.googleapis.com/css?family=Bitter:400,700|Lato:300,700" media="all" rel="stylesheet" />
+  <link href="//d146h09pbg0b1a.cloudfront.net/assets/application-c992391beaa069692384c4b76e08bd1b.css" media="all" rel="stylesheet" />
+  
+  
+</head>
+<body class="pad">
+
+  
+  
+
+  
+<div id="overlay">
+  <div>
+      <p>
+        <span>Welcome to CoderPad!</span><br>
+        Identify yourself below, if you please.
+      </p>
+      <input id="name-prompt">
+      <button id="go" class="btn btn-primary">
+        Go!
+      </button>
+  </div>
+</div>
+
+<div id="header">
+
+  <div id="header-wrapper">
+      <button
+        class="btn btn-primary tooltip-target"
+        id="run"
+        data-toggle="tooltip"
+        title="Shortcut: ctrl + enter"
+        data-placement="bottom"
+        data-html="true"
+      >
+        Run
+        <span class="fui-play"></span>
+      </button>
+
+
+    <a
+      id="settings-toggle"
+      href="#"
+      data-toggle="modal"
+      data-target="#settings-modal"
+    >
+      <span
+        class="fui-gear tooltip-target"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Pad settings"
+      ></span>
+    </a>
+
+  </div>
+</div>
+
+<div id="workspace-wrap" class="pad">
+  <div id="workspace" class="cpp">
+    <div id="editor" class="pane">
+      <span class="pane-label">C++ Code</span>
+      <div id="editor-widget" class="codemirror-container"></div>
+    </div>
+    <div id="vertical" class="resizer"></div>
+    <div id="right-pane">
+        <div id="execution-log" class="pane full">
+          <span class="pane-label">Results</span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar">
+    <img alt="5dde501906b4898b284e8bde7b2bbd76" id="branded_logo" src="//d2t1avzf848e2j.cloudfront.net/uploads/domain/logo/5dde501906b4898b284e8bde7b2bbd76.png" />
+  <ol id="users"></ol>
+
+  <p>
+    CoderPad is a collaborative code editor with real-time execution
+     built straight into the browser.
+  </p>
+    <p><a href="https://plus.google.com/hangouts/_?gid=583721984460&amp;gd=https%3A%2F%2Fcoderpad.io%2F217668">Open Google Hangout</a></p>
+  </p>
+</div>
+
+
+
+
+<script>
+  window.lang     = 'cpp';
+  window.pad      = '217668';
+  window.username = null ||
+    ('Guest ' + Math.floor(Math.random() * 1000));
+  window.snippets = {"Daniel Wang":"# File1 -\u003E File2, File3\r\n# File2 -\u003E File3\r\n# File3 -\u003E File1\r\n\r\n# File1 -\u003E File2\r\n# File2 -\u003E File3\r\n# File3 -\u003E File2\r\n\r\n#file class: get_deps(): list of files or [] (meaning no deps)\r\n#check to see if any circular dependency exists\r\n#file a: [file1, file2]\r\n# assume input is list of files, each with dependencies\r\n\r\n\r\n# get deps of file\r\n# search deps for file\r\nfiles_seen = set()\r\ndef find_circular(inputfile, searchfile):\r\n  deps = inputfile.get_deps()\r\n  \r\n  for d in deps:\r\n    if d not in files_seen:\r\n      files_seen.insert(d)      \r\n      if find_circular(d, searchfile):\r\n        return true\r\n\r\n\r\n  if searchfile in files_seen:\r\n    return true\r\n  return false\r\n\r\n#files: list of files\r\ndef find_any_circular(files):\r\n  for f in files:\r\n    files_seen = set()\r\n    if find_circular(f, f):\r\n      return true\r\n  return false\r\n\r\n# File1 -\u003E File2\r\n# File2 -\u003E File3\r\n\r\n\r\nfiles_seen: file2, file3\r\nfind_circular(file1, file1) -\u003E false\r\ndeps = [file2]\r\nfind_circular(file2, file1) -\u003E false\r\ndeps = [file3]\r\nfind_circular(file3, file1) -\u003E false\r\ndeps = [file2]\r\nfind_circular(file2, file1) -\u003E false\r\n\r\n\r\n  \r\n  \r\n  \r\n  \r\n  \r\ndef find_circular(inputfile, searchfile):\r\n  deps = file.get_deps()\r\n  if searchfile in deps:\r\n    return true\r\n  \r\n  circular []\r\n  for d in deps:\r\n    circular.append(find_circular(d, searchfile))\r\n return true in circula","Madhav Mohandas":"#include \u003Ciostream\u003E\r\nusing namespace std;\r\n\r\n// File1 -\u003E File2, File3\r\n// File2 -\u003E File3\r\n\r\n// File1 -\u003E File2, File3\r\n// File3 -\u003E File2\r\n\r\n\r\n// F1 -\u003E F2\r\n// F2 -\u003E F3\r\n// F3 -\u003E F2\r\nFile file;\r\nfile.getDependencies() -\u003E vector \u003CFile\u003E;\r\n\r\n\r\n// Is there a dependency on targetF from depedencies in depFile.\r\nbool circFileDep(File depFile, File targetF, set\u003CFile\u003E \u0026usedElems)\r\n{\r\n  if(depFile.equals(targetF))\r\n  {\r\n    return true;\r\n  }\r\n  if(!(usedElems.insert(depFile)))\r\n  {\r\n    return false;\r\n  }\r\n  vector\u003CFile\u003E nextDeps = depFile.getDependencies();\r\n  for(auto i = nextDeps.begin(); i != nextDeps.end(); ++i)\r\n  {\r\n\r\n    bool depExists = circFileDep(*i, targetF, usedElems);\r\n    if(depExists)\r\n    {\r\n      return true;\r\n    }\r\n  }\r\n  return false;\r\n}\r\n\r\nbool circularDependency(vector\u003CFile\u003E files)\r\n{\r\n  for(auto f : files)\r\n  {\r\n    vector\u003CFile\u003E fileDeps = f.getDependencies();\r\n    set\u003CFile\u003E usedFiles;\r\n    usedFile.insert(f);\r\n    for(auto fDep : fileDeps)\r\n    {\r\n      bool depExists = circFileDep(fDep, f, usedFiles);\r\n      if(depExists)\r\n      {\r\n        return true;\r\n      }\r\n    }\r\n  }\r\n  return false;\r\n}\r\n\r\n// To execute C++, please define \"int main()\"\r\n\r\nint main() {\r\n  for (int i = 0; i \u003C 5; i++) {\r\n    cout \u003C\u003C \"hello world\\n\";\r\n  }\r\n  return 0;\r\n}\r\n\r\n/*\r\n\r\n  File file1 = files[0];\r\n  vector\u003CFile\u003E file1Dep = file1.getDependencies();\r\n  for(auto i = file1Dep.begin(); i != file1Dep.end(); ++i)\r\n  {\r\n    File dep = *i;\r\n    vector\u003CFile\u003E depDep = dep.getDependencies();\r\n    if(depDep.find(file1) == depDep.end())\r\n    {\r\n      return false;\r\n    }\r\n    \r\n    for(auto j = depDep.begin(); j != depDep.end(); ++j)\r\n    {\r\n      \r\n    }\r\n    }\r\n*/","Wei Shung Chung":"import java.util.HashMap;\r\n\r\n\r\n// File1\r\n// import File2;\r\n// import File3;\r\n\r\n// File2\r\n// import File3;\r\n\r\n// File3\r\n// import File1;\r\n\r\n\r\n// Program p = new Program();\r\n// p.getImports(File1) -\u003E List\u003CFile\u003E(File2, File3);\r\n\r\n// File1 -\u003E File2 -\u003E File3\r\n//    |                 |\r\n//    -------------------\r\n\r\npublic LinkedList\u003CString\u003E build(LinkedList\u003CString\u003E links, String inputFile, List\u003CString\u003E imports) {\r\n  /**\r\n  * First time creation\r\n  */\r\n  if(links == null) {\r\n    links = new LinkedList\u003CString\u003E();\r\n    links.add(inputFile);\r\n    for(String import: imports) {\r\n      links.add(import);\r\n    }\r\n  } else {\r\n    //if found inputFile\r\n    int indexFound = links.indexOf(inputFile);\r\n    if(indexFound \u003E 0) {\r\n      for(String childs: links.listIterator(indexFound)) {\r\n        \r\n      }\r\n      for(String import: imports) {\r\n        \r\n      }\r\n    }\r\n    else { // inputFile not found\r\n      \r\n    }\r\n    \r\n  }\r\n  \r\n  \r\n  \r\n  \r\n  \r\n}\r\n\r\n//Node node = Node.next();\r\n\r\n\r\n// File1 -\u003E File2 -\u003E File3 -\u003E File1 ...\r\n\r\npublic boolean detectCycle(LinkedList\u003CNode\u003E links) {\r\n  //TODOS: error checkings\r\n\r\n  Node firstPtr = links.first();\r\n  Node secondPtr = firstPtr;\r\n  \r\n  while(secondPtr.next().next() != null) {\r\n    firstPtr = firstPtr.next();\r\n    secondPtr = secondPtr.next().next();\r\n    if(firstPtr == secondPtr) {\r\n      return true;\r\n    }\r\n  }\r\n  return false;\r\n}\r\n","Ken Huang":"#include \u003Ciostream\u003E\r\nusing namespace std;\r\n\r\n// File1 -\u003E File2, File3\r\n// File2 -\u003E File3\r\n// File3 -\u003E File1\r\n\r\n\r\n// File1 -\u003E File2, File3\r\n// File2 -\u003E File3\r\n\r\n1: visited\r\n2: visiting\r\n3: visiting\r\n  \r\n//file1's adjacent vertex\r\n{file2,file3}\r\n//file2's ad vertex\r\n{file3}\r\n// Current vertex\r\nv = file2;\r\n//The queue\r\nq = {file3};\r\n\r\n\r\nbool findDepend(Graph G){\r\n  Queue q;\r\n//   enum{notVisited,visiting,visited};\r\n  G-\u003Eroot;\r\n  Path rootPath;\r\n  rootPath.push(root);\r\n  q.push(root, rootPath);\r\n  for(vertex in G){\r\n    vertex.state = notVisited;\r\n  }\r\n  root.state = visiting;\r\n  while(q is not empty){\r\n    Vertex v, Path p = q.pop; \r\n    for(Vertex adjacentVertex: v.adjacent()){\r\n      Path newPath = p;\r\n      if(adjacentVertex.state == notVisited){\r\n        newPath.addVertex(adjacentVertex);  \r\n        Q.push(adjacentVertex,newPath);\r\n      }\r\n      else if(newPath.contains(adjacentVertex)){\r\n          return true;\r\n      }\r\n    }\r\n//     q.push(\u003Cv,newpath\u003E);\r\n    v.state = Visited;\r\n  }\r\n  return false;\r\n}\r\n\r\nQueue \u003CPair\u003CVertex, Path\u003E\u003E q;\r\n","Ankit Chaudhary":"import java.util.HashMap;\r\n\r\n// file1\r\n// import file2;\r\n// import file3;\r\n\r\n// file2\r\n// import file3;\r\n// import file4;\r\n\r\n// file1 -\u003E file2, file3\r\n// file2 -\u003E file3, file4\r\n// visitedNodes = {file1-\u003Enull, file2-\u003Efile1,file3-\u003Efile1,\r\n// node = file3\r\n// parent file2\r\n\r\n// file1 -\u003E file2, file3, file1\r\n// visitedNodes = {file1-\u003Enull, file2-\u003Efile1, file2-\u003Efile1}\r\n\r\n// parent file2\r\n\r\n// file1 -\u003E file2\r\n// file2 -\u003E file1\r\n// file3 -\u003E file4\r\n// visitedNodes = {file1-\u003Enull, file2-\u003Efile1}\r\n\r\n\r\n\r\n\r\n// To execute Java, please define \"static void main\" on a class named Solution\r\n\r\nclass DAGService {\r\n  \r\n  private final Map\u003CString, Set\u003CString\u003E\u003E graph;\r\n  \r\n  public DAGService(Map\u003CString, Set\u003CString\u003E\u003E graph) {\r\n    this.graph = graph;\r\n  }\r\n  \r\n  public boolean doesCycleExists() {\r\n    HashMap\u003CString, Set\u003CString\u003E\u003E visitedNodes = new HashMap\u003CString, Set\u003CString\u003E\u003E();\r\n    for(Entry\u003CString, Set\u003CString\u003E\u003E node : graph) {\r\n      visitedNodes.put(node, new HashSet\u003CString\u003E().put(null));\r\n      if (isVisited(visitedNodes, node, null)) {\r\n        return true;\r\n      }\r\n    }\r\n    \r\n    return false;\r\n  }\r\n  \r\n  public boolean isVisited(HashMap\u003CString, Set\u003CString\u003E\u003E visitedNodes, Entry\u003CString, Set\u003CString\u003E\u003E node, String parent) {\r\n    \r\n    if (parent.equals(node.getkey())) {\r\n      return true;\r\n    }\r\n    \r\n    if (visitedNodes.getValue(node.getKey()) != null \r\n        \u0026\u0026 .getValue(node.getKey()).contains(node.getKey()) {\r\n        // if a current has been visisted earlier, it's parent set consists of current node\r\n        return true;\r\n    }\r\n    if (visitedNodes.getValue(node.getKey()) != null ) {\r\n          visitedNodes.getValue(node.getKey()).put(parent);\r\n    }\r\n    else {\r\n       visitedNodes.put(node.getKey(), new HashSet\u003CString\u003E().put(parent));\r\n    }\r\n    for(String child : node.getValue()) {\r\n      return isVisited(visitedNodes, \r\n                       new Entry\u003CString, Set\u003CString\u003E\u003E(child, graph.getValue(child), node));\r\n    }\r\n  }\r\n}\r\n\r\n\r\nclass Solution {\r\n  public static void main(String[] args) {\r\n    HashMap\u003CString, Set\u003CString\u003E\u003E input = new HashMap\u003CString, Set\u003CString\u003E\u003E();\r\n    \r\n    Set\u003CString\u003E a = new HashSet\u003CString\u003E();\r\n    a.put(\"b\");\r\n    a.put(\"c\");\r\n    a.put(\"d\");\r\n    Set\u003CString\u003E b = new HashSet\u003CString\u003E();\r\n    b.put(\"c\");\r\n    b.put(\"d\");\r\n    Set\u003CString\u003E c = new HashSet\u003CString\u003E();\r\n    c.put(\"b\");\r\n    \r\n    input.put(\"a\", a);\r\n    input.put(\"b\", b);\r\n    input.put(\"c\", c);\r\n    \r\n    System.out.println(DAGService.doesCycleExists(input));\r\n  }\r\n}\r\n","Hello World":"print('hello, world')"}
+</script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+
+  
+  
+<div class="modal fade" id="switching-language-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <p>The pad's language is switching to: <span></span>&hellip;</p>
+  <p>Everyone&rsquo;s tabs will refresh shortly.</p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <h3><span class="fui-gear"></span>Pad Settings</h3>
+  <ul>
+    <li>
+      <h4>Language</h4>
+      <p>Warning: Changing the pad language will refresh the window for all participants.</p>
+      <select class="selectpicker" id="language-select" name="language-select"><option value="c">C</option>
+<option value="csharp">C#</option>
+<option selected="selected" value="cpp">C++</option>
+<option value="clojure">Clojure</option>
+<option value="coffeescript">CoffeeScript</option>
+<option value="go">Go</option>
+<option value="haskell">Haskell</option>
+<option value="java">Java</option>
+<option value="javascript">JavaScript</option>
+<option value="markdown">Markdown</option>
+<option value="objc">Objective-C</option>
+<option value="php">PHP</option>
+<option value="perl">Perl</option>
+<option value="python">Python</option>
+<option value="ruby">Ruby</option>
+<option value="scala">Scala</option></select>
+    </li>
+    <li>
+      <h4>Tab &nbsp;Spacing</h4>
+      <p>Control the number of spaces used for indentation.</p>
+      <select class="selectpicker" id="tab-type-select" name="tab-type-select"><option selected="selected" value="2">2 Space Tabs</option>
+<option value="4">4 Space Tabs</option>
+<option value="8">8 Space Tabs</option></select>
+    </li>
+  </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    <div class="modal-body clearfix">
+      <h4>Choose the language for your new pad:</h4>
+
+      <form accept-charset="UTF-8" action="/" class="new_pad" id="new_pad" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <div class="clearfix">
+            <ul>
+              <li class="header">Interpreted</li>
+                <li>
+                  <input id="pad_language_coffeescript" name="pad[language]" type="radio" value="coffeescript" />
+                  <label for="pad_language_coffeescript">CoffeeScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_javascript" name="pad[language]" type="radio" value="javascript" />
+                  <label for="pad_language_javascript">JavaScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_perl" name="pad[language]" type="radio" value="perl" />
+                  <label for="pad_language_perl">Perl</label>
+                </li>
+                <li>
+                  <input id="pad_language_php" name="pad[language]" type="radio" value="php" />
+                  <label for="pad_language_php">PHP</label>
+                </li>
+                <li>
+                  <input id="pad_language_python" name="pad[language]" type="radio" value="python" />
+                  <label for="pad_language_python">Python</label>
+                </li>
+                <li>
+                  <input checked="checked" id="pad_language_ruby" name="pad[language]" type="radio" value="ruby" />
+                  <label for="pad_language_ruby">Ruby</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Compiled</li>
+                <li>
+                  <input id="pad_language_c" name="pad[language]" type="radio" value="c" />
+                  <label for="pad_language_c">C</label>
+                </li>
+                <li>
+                  <input id="pad_language_clojure" name="pad[language]" type="radio" value="clojure" />
+                  <label for="pad_language_clojure">Clojure</label>
+                </li>
+                <li>
+                  <input id="pad_language_cpp" name="pad[language]" type="radio" value="cpp" />
+                  <label for="pad_language_cpp">C++</label>
+                </li>
+                <li>
+                  <input id="pad_language_csharp" name="pad[language]" type="radio" value="csharp" />
+                  <label for="pad_language_csharp">C#</label>
+                </li>
+                <li>
+                  <input id="pad_language_go" name="pad[language]" type="radio" value="go" />
+                  <label for="pad_language_go">Go</label>
+                </li>
+                <li>
+                  <input id="pad_language_haskell" name="pad[language]" type="radio" value="haskell" />
+                  <label for="pad_language_haskell">Haskell</label>
+                </li>
+                <li>
+                  <input id="pad_language_java" name="pad[language]" type="radio" value="java" />
+                  <label for="pad_language_java">Java</label>
+                </li>
+                <li>
+                  <input id="pad_language_objc" name="pad[language]" type="radio" value="objc" />
+                  <label for="pad_language_objc">Objective-C</label>
+                </li>
+                <li>
+                  <input id="pad_language_scala" name="pad[language]" type="radio" value="scala" />
+                  <label for="pad_language_scala">Scala</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Documents</li>
+                <li>
+                  <input id="pad_language_markdown" name="pad[language]" type="radio" value="markdown" />
+                  <label for="pad_language_markdown">Markdown</label>
+                </li>
+            </ul>
+        </div>
+        <p>
+          <input class="btn btn-primary" name="commit" type="submit" value="Create Pad" /> or
+          <input class="btn btn-primary" name="commit" type="submit" value="Launch Google Hangout" />
+        </p>
+</form>    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="//cdn.ravenjs.com/1.1.2/jquery,native/raven.min.js"></script>
+    <script>
+      Raven.config('https://4d747205c6ed435c889710eaead44e12@app.getsentry.com/10579', {
+        includePaths: [
+          /localhost/,
+          /coderpad\.io/,
+          /vincentwoo\.com/,
+          /d146h09pbg0b1a\.cloudfront/
+        ],
+        ignoreUrls: [
+          /graph\.facebook\.com/i,
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          /eatdifferent\.com\.woopra-ns\.com/i,
+          /static\.woopra\.com\/js\/woopra\.js/i,
+          /extensions\//i,
+          /^chrome:\/\//i,
+          /127\.0\.0\.1:4001\/isrunning/i,
+          /webappstoolbarba\.texthelp\.com\//i,
+          /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
+        ]
+      }).install();
+    </script>
+  <script src="//d146h09pbg0b1a.cloudfront.net/assets/application-ac1fc5b18aff7c11b7c357930bb008e9.js"></script>
+</body>
+</html>

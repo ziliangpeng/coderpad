@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<!-- CoderPad (c) 2013 Vincent Woo -->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","errorBeacon":"jserror.newrelic.com","licenseKey":"586aeabffa","applicationID":"2434573","transactionName":"cF5XTRNfXF9VQxkSVVdCFkkNUUlRUVJd","queueTime":24,"applicationTime":18,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-314.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function a(b,c,d){function e(f){if(!c[f]){var g=c[f]={exports:{}};b[f][0].call(g.exports,function(a){var c=b[f][1][a];return e(c?c:a)},g,g.exports,a,b,c,d)}return c[f].exports}for(var f=0;f<d.length;f++)e(d[f]);return e}({"4O2Y62":[function(a,b){function c(a,b){var c=d[a];return c?c.apply(this,b):(e[a]||(e[a]=[]),void e[a].push(b))}var d={},e={};b.exports=c,c.queues=e,c.handlers=d},{}],handle:[function(a,b){b.exports=a("4O2Y62")},{}],YLUGVp:[function(a,b){function c(){var a=m.info=NREUM.info;if(a&&a.agent&&a.licenseKey&&a.applicationID){m.proto="https"===l.split(":")[0]||a.sslForHttp?"https://":"http://",g("mark",["onload",f()]);var b=i.createElement("script");b.src=m.proto+a.agent,i.body.appendChild(b)}}function d(){"complete"===i.readyState&&e()}function e(){g("mark",["domContent",f()])}function f(){return(new Date).getTime()}var g=a("handle"),h=window,i=h.document,j="addEventListener",k="attachEvent",l=(""+location).split("?")[0],m=b.exports={offset:f(),origin:l};i[j]?(i[j]("DOMContentLoaded",e,!1),h[j]("load",c,!1)):(i[k]("onreadystatechange",d),h[k]("onload",c)),g("mark",["firstbyte",f()])},{handle:"4O2Y62"}],loader:[function(a,b){b.exports=a("YLUGVp")},{}]},{},["YLUGVp"]);</script>
+  <meta name="description"
+    content="CoderPad is the best tool available for conducting programming phone screen interviews. Edit code and run it with your candidate, realtime in the browser.">
+  <link rel="shortcut icon" href="//d146h09pbg0b1a.cloudfront.net/assets/coderpad_logo_32x32-4cb7162b76ccaa9584b63b603f47e139.png">
+
+  <title>CoderPad - Playback - Ruby</title>
+
+  <link href="//fonts.googleapis.com/css?family=Bitter:400,700|Lato:300,700" media="all" rel="stylesheet" />
+  <link href="//d146h09pbg0b1a.cloudfront.net/assets/application-c992391beaa069692384c4b76e08bd1b.css" media="all" rel="stylesheet" />
+  
+  
+</head>
+<body class="pad">
+
+  
+  
+
+  
+<div id="header">
+  <div id="slider"></div>
+</div>
+
+<div id="workspace-wrap" class="playback">
+  <div id="workspace">
+    <div id="editor">
+      <div id="editor-widget"></div>
+    </div>
+    <div id="vertical" class="resizer"></div>
+    <div id="right-pane">
+      <div id="execution-log" class="full"></div>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar">
+  <p>This is a read-only view of a past pad.</p>
+  <p>Use the slider to see how the code has changed, and what it produced
+    as it was executed.</p>
+  <p><a href="https://coderpad.io/profile">Return to profile</a></p>
+</div>
+
+<script>
+  window.lang = 'ruby';
+  window.pad  = '891139';
+</script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+
+  
+  
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    <div class="modal-body clearfix">
+      <h4>Choose the language for your new pad:</h4>
+
+      <form accept-charset="UTF-8" action="/" class="new_pad" id="new_pad" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <div class="clearfix">
+            <ul>
+              <li class="header">Interpreted</li>
+                <li>
+                  <input id="pad_language_coffeescript" name="pad[language]" type="radio" value="coffeescript" />
+                  <label for="pad_language_coffeescript">CoffeeScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_javascript" name="pad[language]" type="radio" value="javascript" />
+                  <label for="pad_language_javascript">JavaScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_perl" name="pad[language]" type="radio" value="perl" />
+                  <label for="pad_language_perl">Perl</label>
+                </li>
+                <li>
+                  <input id="pad_language_php" name="pad[language]" type="radio" value="php" />
+                  <label for="pad_language_php">PHP</label>
+                </li>
+                <li>
+                  <input id="pad_language_python" name="pad[language]" type="radio" value="python" />
+                  <label for="pad_language_python">Python</label>
+                </li>
+                <li>
+                  <input checked="checked" id="pad_language_ruby" name="pad[language]" type="radio" value="ruby" />
+                  <label for="pad_language_ruby">Ruby</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Compiled</li>
+                <li>
+                  <input id="pad_language_c" name="pad[language]" type="radio" value="c" />
+                  <label for="pad_language_c">C</label>
+                </li>
+                <li>
+                  <input id="pad_language_clojure" name="pad[language]" type="radio" value="clojure" />
+                  <label for="pad_language_clojure">Clojure</label>
+                </li>
+                <li>
+                  <input id="pad_language_cpp" name="pad[language]" type="radio" value="cpp" />
+                  <label for="pad_language_cpp">C++</label>
+                </li>
+                <li>
+                  <input id="pad_language_csharp" name="pad[language]" type="radio" value="csharp" />
+                  <label for="pad_language_csharp">C#</label>
+                </li>
+                <li>
+                  <input id="pad_language_go" name="pad[language]" type="radio" value="go" />
+                  <label for="pad_language_go">Go</label>
+                </li>
+                <li>
+                  <input id="pad_language_haskell" name="pad[language]" type="radio" value="haskell" />
+                  <label for="pad_language_haskell">Haskell</label>
+                </li>
+                <li>
+                  <input id="pad_language_java" name="pad[language]" type="radio" value="java" />
+                  <label for="pad_language_java">Java</label>
+                </li>
+                <li>
+                  <input id="pad_language_objc" name="pad[language]" type="radio" value="objc" />
+                  <label for="pad_language_objc">Objective-C</label>
+                </li>
+                <li>
+                  <input id="pad_language_scala" name="pad[language]" type="radio" value="scala" />
+                  <label for="pad_language_scala">Scala</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Documents</li>
+                <li>
+                  <input id="pad_language_markdown" name="pad[language]" type="radio" value="markdown" />
+                  <label for="pad_language_markdown">Markdown</label>
+                </li>
+            </ul>
+        </div>
+        <p>
+          <input class="btn btn-primary" name="commit" type="submit" value="Create Pad" /> or
+          <input class="btn btn-primary" name="commit" type="submit" value="Launch Google Hangout" />
+        </p>
+</form>    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="//cdn.ravenjs.com/1.1.2/jquery,native/raven.min.js"></script>
+    <script>
+      Raven.config('https://4d747205c6ed435c889710eaead44e12@app.getsentry.com/10579', {
+        includePaths: [
+          /localhost/,
+          /coderpad\.io/,
+          /vincentwoo\.com/,
+          /d146h09pbg0b1a\.cloudfront/
+        ],
+        ignoreUrls: [
+          /graph\.facebook\.com/i,
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          /eatdifferent\.com\.woopra-ns\.com/i,
+          /static\.woopra\.com\/js\/woopra\.js/i,
+          /extensions\//i,
+          /^chrome:\/\//i,
+          /127\.0\.0\.1:4001\/isrunning/i,
+          /webappstoolbarba\.texthelp\.com\//i,
+          /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
+        ]
+      }).install();
+    </script>
+  <script src="//d146h09pbg0b1a.cloudfront.net/assets/application-ac1fc5b18aff7c11b7c357930bb008e9.js"></script>
+</body>
+</html>

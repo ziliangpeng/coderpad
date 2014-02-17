@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<!-- CoderPad (c) 2013 Vincent Woo -->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","errorBeacon":"jserror.newrelic.com","licenseKey":"586aeabffa","applicationID":"2434573","transactionName":"cF5XTRNfXF9VQxkSVVdCFkoJX0c=","queueTime":4,"applicationTime":87,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-314.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function a(b,c,d){function e(f){if(!c[f]){var g=c[f]={exports:{}};b[f][0].call(g.exports,function(a){var c=b[f][1][a];return e(c?c:a)},g,g.exports,a,b,c,d)}return c[f].exports}for(var f=0;f<d.length;f++)e(d[f]);return e}({"4O2Y62":[function(a,b){function c(a,b){var c=d[a];return c?c.apply(this,b):(e[a]||(e[a]=[]),void e[a].push(b))}var d={},e={};b.exports=c,c.queues=e,c.handlers=d},{}],handle:[function(a,b){b.exports=a("4O2Y62")},{}],YLUGVp:[function(a,b){function c(){var a=m.info=NREUM.info;if(a&&a.agent&&a.licenseKey&&a.applicationID){m.proto="https"===l.split(":")[0]||a.sslForHttp?"https://":"http://",g("mark",["onload",f()]);var b=i.createElement("script");b.src=m.proto+a.agent,i.body.appendChild(b)}}function d(){"complete"===i.readyState&&e()}function e(){g("mark",["domContent",f()])}function f(){return(new Date).getTime()}var g=a("handle"),h=window,i=h.document,j="addEventListener",k="attachEvent",l=(""+location).split("?")[0],m=b.exports={offset:f(),origin:l};i[j]?(i[j]("DOMContentLoaded",e,!1),h[j]("load",c,!1)):(i[k]("onreadystatechange",d),h[k]("onload",c)),g("mark",["firstbyte",f()])},{handle:"4O2Y62"}],loader:[function(a,b){b.exports=a("YLUGVp")},{}]},{},["YLUGVp"]);</script>
+  <meta name="description"
+    content="CoderPad is the best tool available for conducting programming phone screen interviews. Edit code and run it with your candidate, realtime in the browser.">
+  <link rel="shortcut icon" href="//d146h09pbg0b1a.cloudfront.net/assets/coderpad_logo_32x32-4cb7162b76ccaa9584b63b603f47e139.png">
+
+  <title>CoderPad - Go</title>
+
+  <link href="//fonts.googleapis.com/css?family=Bitter:400,700|Lato:300,700" media="all" rel="stylesheet" />
+  <link href="//d146h09pbg0b1a.cloudfront.net/assets/application-c992391beaa069692384c4b76e08bd1b.css" media="all" rel="stylesheet" />
+  
+  
+</head>
+<body class="pad">
+
+  
+  
+
+  
+<div id="overlay">
+  <div>
+      <p>
+        <span>Welcome to CoderPad!</span><br>
+        Identify yourself below, if you please.
+      </p>
+      <input id="name-prompt">
+      <button id="go" class="btn btn-primary">
+        Go!
+      </button>
+  </div>
+</div>
+
+<div id="header">
+
+  <div id="header-wrapper">
+      <button
+        class="btn btn-primary tooltip-target"
+        id="run"
+        data-toggle="tooltip"
+        title="Shortcut: ctrl + enter"
+        data-placement="bottom"
+        data-html="true"
+      >
+        Run
+        <span class="fui-play"></span>
+      </button>
+
+
+    <a
+      id="settings-toggle"
+      href="#"
+      data-toggle="modal"
+      data-target="#settings-modal"
+    >
+      <span
+        class="fui-gear tooltip-target"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Pad settings"
+      ></span>
+    </a>
+
+  </div>
+</div>
+
+<div id="workspace-wrap" class="pad">
+  <div id="workspace" class="go">
+    <div id="editor" class="pane">
+      <span class="pane-label">Go Code</span>
+      <div id="editor-widget" class="codemirror-container"></div>
+    </div>
+    <div id="vertical" class="resizer"></div>
+    <div id="right-pane">
+        <div id="execution-log" class="pane full">
+          <span class="pane-label">Results</span>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar">
+  <ol id="users"></ol>
+
+  <p>
+    CoderPad is a collaborative code editor with real-time execution
+     built straight into the browser.
+  </p>
+    <p><a href="https://plus.google.com/hangouts/_?gid=583721984460&amp;gd=https%3A%2F%2Fcoderpad.io%2F781157">Open Google Hangout</a></p>
+  </p>
+</div>
+
+
+
+
+<script>
+  window.lang     = 'go';
+  window.pad      = '781157';
+  window.username = null ||
+    ('Guest ' + Math.floor(Math.random() * 1000));
+  window.snippets = {"":"def say_hello\r\n  puts 'Hello, World'\r\nend\r\n\r\n5.times { say_hello }\r\n","owens stuff":"import java.util.Random;\r\n\r\n\r\n/// you still here?\r\n\r\nprivate class Board \r\n{\r\n  //board[Y][X]\r\n  //Why do that though? it is just adding more code\r\n  \r\n  // because now it has a name. You can understand it.\r\n  //I think the opposite, if I see a 12 I know it is a 12. If I have a load of constants and I can't see what it is I might not know straight away. lol\r\n  \r\n  \r\n  // I know that every place that DIM is used, the 12 means the same thing\r\n  // I have a general idea of what that 12 represents. I could be more verbose and call it DIMENSION but instead I could just put a comment by the definition\r\n  \r\n  // the board dimension 12 x 12\r\n  private static final int DIM = 12;\r\n  \r\n  // if I used 12 literals everywhere, then I would need to put that comment in every single place.\r\n  \r\n  //That makes sense actually. So hows about I go make these changes and I shall see what happens!\r\n  \r\n  // one more thing L:57\r\n  \r\n  private String[][] board;\r\n  private String[] regionLetters = String[]{\"\\033[42m \\033[m\", \"\\033[45m \\033[m\", \"\\033[47m \\033[m\", \"\\033[46m \\033[m\"};\r\n  private int playerYposition, playerXposition;\r\n  private int oldPlayerYposition, oldPlayerXposition;\r\n  private int diseaseYposition, diseaseXposition;\r\n  private int oldDiseaseYposition, oldDiseaseXposition;\r\n  \r\n  //Thats what I was looking for, but Google had some crazy ass things! Thanks :)\r\n  private static int foo = 3; // tada\r\n  //Also would constants go in the constructor?\r\n  \r\n  // you can use them in the constructor, or anywhere really.\r\n  \r\n  //How do I make a constant. I googled but everything looks way more complicated than it should be.\r\n  //Although that might just be java.\r\n\r\n  public Board(int numberOfReigons) \r\n  {\r\n    \r\n    // what is 12 ?    \r\n    //The playing board is a 12x 12 grid\r\n    board = new String[DIM][DIM];\r\n    \r\n    Random rand = new Random();\r\n      \r\n    playerYposition = rand.nextInt(DIM);\r\n    playerXposition = rand.nextInt(DIM);\r\n    \r\n    // also, you can reuse the same regionPosition variable\r\n    // how long/descriptive a variable name is should depend on how long it's in scope for and how it's used.\r\n    // since we see we're using regionPosition to look up a value in regionLetters, the region suffix on regionPosition\r\n    // is pretty redundant. you could even go even shorter (I like the full word)\r\n      \r\n    int position;\r\n    for (int i = 0; i \u003C 12; i++)\r\n    {\r\n      for (int y=0;y\u003C12;y++)\r\n      {\r\n        position = rand.nextInt(numberOfReigons); // this makes a pretty big performance difference  \r\n        board[i][y] = regionLetters[position];\r\n      }\r\n    }\r\n  }\r\n\r\n  //Awesome, that makes a lot of sense :) One question, this isn't public is it? Like could it be Googled? \r\n  // Sweet, just worried about plagarism detection picking it up. Okay so loads of suggestions, let me go implement them!\r\n  // cool\r\n  // no\r\n  \r\n  public int randomPosition(int position) \r\n  {\r\n    int value = 12; //Bit of a hack\r\n\r\n    while(value \u003E11 || value \u003C0)\r\n    {\r\n      value = (position + (-1 + (int)(Math.random() * ((1 - -1) +1))));\r\n    }\r\n    return value;\r\n  }\r\n\r\n  public void createDisease(int x, int y)\r\n  {\r\n    diseaseYposition = y;\r\n    diseaseXposition = x;\r\n    oldDiseaseYposition = diseaseYposition;\r\n    oldDiseaseXposition = diseaseXposition;\r\n    board[diseaseYposition][diseaseXposition] = \"\\033[41mD\\033[m\";\r\n  }\r\n\r\n  public void updateDisease()\r\n  {\r\n    for(int i=-1;i==2;i++)\r\n    {\r\n      for(int j=-1;j==2;j++)\r\n      {\r\n        if(board[oldDiseaseYposition + j][oldDiseaseXposition + i] == board[oldDiseaseYposition][oldDiseaseXposition])\r\n        {\r\n          board[oldDiseaseYposition + j][oldDiseaseXposition + i] = \"\\033[41mD\\033[m\";\r\n        } else {\r\n          board[oldDiseaseYposition + j][oldDiseaseXposition + i] = \"\\033[41mI\\033[m\";\r\n        }\r\n      }\r\n    }\r\n  }\r\n\r\n  public void updatePlayer() \r\n  {\r\n    oldPlayerYposition = playerYposition;\r\n    oldPlayerXposition = playerXposition;\r\n    playerYposition = randomPosition(playerYposition);\r\n    playerXposition = randomPosition(playerXposition);\r\n    board[oldPlayerYposition][oldPlayerXposition] = board[playerYposition][playerXposition];\r\n    board[playerYposition][playerXposition] = \"\\033[44mP\\033[m\";\r\n  }\r\n\r\n  public boolean endGame() \r\n  { \r\n    if((playerYposition == diseaseYposition) \u0026\u0026 (playerXposition == diseaseXposition))\r\n    { \r\n      return true;\r\n    }\r\n    return false;\r\n  }\r\n\r\n  public void printBoard() \r\n  {\r\n    System.out.print(\"\\033c\"); //Clear screen in bash\r\n\r\n    System.out.println(\"X\u003E    0  1  2  3  4  5  6  7  8  9  10 11\");\r\n    System.out.println(\"      -----------------------------------\");\r\n    for(int i=0;i\u003C12;i++)\r\n    {\r\n      if(i \u003C 10) \r\n      {\r\n        System.out.print(i + \"    |\");\r\n      } else {\r\n        System.out.print(i + \"   |\");\r\n      }\r\n\r\n      for(int y=0;y\u003C12;y++)\r\n      { \r\n        System.out.print(board[i][y]);\r\n        System.out.print(\"  \");\r\n      }\r\n      System.out.println();\r\n    }\r\n  }\r\n}"}
+</script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+
+  
+  
+<div class="modal fade" id="switching-language-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <p>The pad's language is switching to: <span></span>&hellip;</p>
+  <p>Everyone&rsquo;s tabs will refresh shortly.</p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <h3><span class="fui-gear"></span>Pad Settings</h3>
+  <ul>
+    <li>
+      <h4>Language</h4>
+      <p>Warning: Changing the pad language will refresh the window for all participants.</p>
+      <select class="selectpicker" id="language-select" name="language-select"><option value="c">C</option>
+<option value="csharp">C#</option>
+<option value="cpp">C++</option>
+<option value="clojure">Clojure</option>
+<option value="coffeescript">CoffeeScript</option>
+<option selected="selected" value="go">Go</option>
+<option value="haskell">Haskell</option>
+<option value="java">Java</option>
+<option value="javascript">JavaScript</option>
+<option value="markdown">Markdown</option>
+<option value="objc">Objective-C</option>
+<option value="php">PHP</option>
+<option value="perl">Perl</option>
+<option value="python">Python</option>
+<option value="ruby">Ruby</option>
+<option value="scala">Scala</option></select>
+    </li>
+    <li>
+      <h4>Tab &nbsp;Spacing</h4>
+      <p>Control the number of spaces used for indentation.</p>
+      <select class="selectpicker" id="tab-type-select" name="tab-type-select"><option selected="selected" value="2">2 Space Tabs</option>
+<option value="4">4 Space Tabs</option>
+<option value="8">8 Space Tabs</option></select>
+    </li>
+  </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    <div class="modal-body clearfix">
+      <h4>Choose the language for your new pad:</h4>
+
+      <form accept-charset="UTF-8" action="/" class="new_pad" id="new_pad" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <div class="clearfix">
+            <ul>
+              <li class="header">Interpreted</li>
+                <li>
+                  <input id="pad_language_coffeescript" name="pad[language]" type="radio" value="coffeescript" />
+                  <label for="pad_language_coffeescript">CoffeeScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_javascript" name="pad[language]" type="radio" value="javascript" />
+                  <label for="pad_language_javascript">JavaScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_perl" name="pad[language]" type="radio" value="perl" />
+                  <label for="pad_language_perl">Perl</label>
+                </li>
+                <li>
+                  <input id="pad_language_php" name="pad[language]" type="radio" value="php" />
+                  <label for="pad_language_php">PHP</label>
+                </li>
+                <li>
+                  <input id="pad_language_python" name="pad[language]" type="radio" value="python" />
+                  <label for="pad_language_python">Python</label>
+                </li>
+                <li>
+                  <input checked="checked" id="pad_language_ruby" name="pad[language]" type="radio" value="ruby" />
+                  <label for="pad_language_ruby">Ruby</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Compiled</li>
+                <li>
+                  <input id="pad_language_c" name="pad[language]" type="radio" value="c" />
+                  <label for="pad_language_c">C</label>
+                </li>
+                <li>
+                  <input id="pad_language_clojure" name="pad[language]" type="radio" value="clojure" />
+                  <label for="pad_language_clojure">Clojure</label>
+                </li>
+                <li>
+                  <input id="pad_language_cpp" name="pad[language]" type="radio" value="cpp" />
+                  <label for="pad_language_cpp">C++</label>
+                </li>
+                <li>
+                  <input id="pad_language_csharp" name="pad[language]" type="radio" value="csharp" />
+                  <label for="pad_language_csharp">C#</label>
+                </li>
+                <li>
+                  <input id="pad_language_go" name="pad[language]" type="radio" value="go" />
+                  <label for="pad_language_go">Go</label>
+                </li>
+                <li>
+                  <input id="pad_language_haskell" name="pad[language]" type="radio" value="haskell" />
+                  <label for="pad_language_haskell">Haskell</label>
+                </li>
+                <li>
+                  <input id="pad_language_java" name="pad[language]" type="radio" value="java" />
+                  <label for="pad_language_java">Java</label>
+                </li>
+                <li>
+                  <input id="pad_language_objc" name="pad[language]" type="radio" value="objc" />
+                  <label for="pad_language_objc">Objective-C</label>
+                </li>
+                <li>
+                  <input id="pad_language_scala" name="pad[language]" type="radio" value="scala" />
+                  <label for="pad_language_scala">Scala</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Documents</li>
+                <li>
+                  <input id="pad_language_markdown" name="pad[language]" type="radio" value="markdown" />
+                  <label for="pad_language_markdown">Markdown</label>
+                </li>
+            </ul>
+        </div>
+        <p>
+          <input class="btn btn-primary" name="commit" type="submit" value="Create Pad" /> or
+          <input class="btn btn-primary" name="commit" type="submit" value="Launch Google Hangout" />
+        </p>
+</form>    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="//cdn.ravenjs.com/1.1.2/jquery,native/raven.min.js"></script>
+    <script>
+      Raven.config('https://4d747205c6ed435c889710eaead44e12@app.getsentry.com/10579', {
+        includePaths: [
+          /localhost/,
+          /coderpad\.io/,
+          /vincentwoo\.com/,
+          /d146h09pbg0b1a\.cloudfront/
+        ],
+        ignoreUrls: [
+          /graph\.facebook\.com/i,
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          /eatdifferent\.com\.woopra-ns\.com/i,
+          /static\.woopra\.com\/js\/woopra\.js/i,
+          /extensions\//i,
+          /^chrome:\/\//i,
+          /127\.0\.0\.1:4001\/isrunning/i,
+          /webappstoolbarba\.texthelp\.com\//i,
+          /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
+        ]
+      }).install();
+    </script>
+  <script src="//d146h09pbg0b1a.cloudfront.net/assets/application-ac1fc5b18aff7c11b7c357930bb008e9.js"></script>
+</body>
+</html>

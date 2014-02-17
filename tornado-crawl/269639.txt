@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!-- CoderPad (c) 2013 Vincent Woo -->
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<script type="text/javascript">window.NREUM||(NREUM={});NREUM.info={"beacon":"beacon-2.newrelic.com","errorBeacon":"jserror.newrelic.com","licenseKey":"586aeabffa","applicationID":"2434573","transactionName":"cF5XTRNfXF9VQxkSVVdCFkoJX0c=","queueTime":10,"applicationTime":77,"ttGuid":"","agentToken":null,"agent":"js-agent.newrelic.com/nr-314.min.js"}</script>
+<script type="text/javascript">window.NREUM||(NREUM={}),__nr_require=function a(b,c,d){function e(f){if(!c[f]){var g=c[f]={exports:{}};b[f][0].call(g.exports,function(a){var c=b[f][1][a];return e(c?c:a)},g,g.exports,a,b,c,d)}return c[f].exports}for(var f=0;f<d.length;f++)e(d[f]);return e}({"4O2Y62":[function(a,b){function c(a,b){var c=d[a];return c?c.apply(this,b):(e[a]||(e[a]=[]),void e[a].push(b))}var d={},e={};b.exports=c,c.queues=e,c.handlers=d},{}],handle:[function(a,b){b.exports=a("4O2Y62")},{}],YLUGVp:[function(a,b){function c(){var a=m.info=NREUM.info;if(a&&a.agent&&a.licenseKey&&a.applicationID){m.proto="https"===l.split(":")[0]||a.sslForHttp?"https://":"http://",g("mark",["onload",f()]);var b=i.createElement("script");b.src=m.proto+a.agent,i.body.appendChild(b)}}function d(){"complete"===i.readyState&&e()}function e(){g("mark",["domContent",f()])}function f(){return(new Date).getTime()}var g=a("handle"),h=window,i=h.document,j="addEventListener",k="attachEvent",l=(""+location).split("?")[0],m=b.exports={offset:f(),origin:l};i[j]?(i[j]("DOMContentLoaded",e,!1),h[j]("load",c,!1)):(i[k]("onreadystatechange",d),h[k]("onload",c)),g("mark",["firstbyte",f()])},{handle:"4O2Y62"}],loader:[function(a,b){b.exports=a("YLUGVp")},{}]},{},["YLUGVp"]);</script>
+  <meta name="description"
+    content="CoderPad is the best tool available for conducting programming phone screen interviews. Edit code and run it with your candidate, realtime in the browser.">
+  <link rel="shortcut icon" href="//d146h09pbg0b1a.cloudfront.net/assets/coderpad_logo_32x32-4cb7162b76ccaa9584b63b603f47e139.png">
+
+  <title>CoderPad - Python</title>
+
+  <link href="//fonts.googleapis.com/css?family=Bitter:400,700|Lato:300,700" media="all" rel="stylesheet" />
+  <link href="//d146h09pbg0b1a.cloudfront.net/assets/application-c992391beaa069692384c4b76e08bd1b.css" media="all" rel="stylesheet" />
+  
+  
+</head>
+<body class="pad">
+
+  
+  
+
+  
+<div id="overlay">
+  <div>
+      <p>
+        <span>Welcome to CoderPad!</span><br>
+        Identify yourself below, if you please.
+      </p>
+      <input id="name-prompt">
+      <button id="go" class="btn btn-primary">
+        Go!
+      </button>
+  </div>
+</div>
+
+<div id="header">
+
+  <div id="header-wrapper">
+      <button
+        class="btn btn-primary tooltip-target"
+        id="run"
+        data-toggle="tooltip"
+        title="Shortcut: ctrl + enter"
+        data-placement="bottom"
+        data-html="true"
+      >
+        Run
+        <span class="fui-play"></span>
+      </button>
+
+
+    <a
+      id="settings-toggle"
+      href="#"
+      data-toggle="modal"
+      data-target="#settings-modal"
+    >
+      <span
+        class="fui-gear tooltip-target"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Pad settings"
+      ></span>
+    </a>
+
+  </div>
+</div>
+
+<div id="workspace-wrap" class="pad">
+  <div id="workspace" class="python">
+    <div id="editor" class="pane">
+      <span class="pane-label">Python Code</span>
+      <div id="editor-widget" class="codemirror-container"></div>
+    </div>
+    <div id="vertical" class="resizer"></div>
+    <div id="right-pane">
+        <div id="console-wrap" class="pane full">
+          <span class="pane-label">Console</span>
+          <div id="console"></div>
+        </div>
+    </div>
+  </div>
+</div>
+
+<div id="sidebar">
+    <img alt="E6451db0fef4d8073c72149f202ab28f" id="branded_logo" src="//d2t1avzf848e2j.cloudfront.net/uploads/domain/logo/e6451db0fef4d8073c72149f202ab28f.png" />
+  <ol id="users"></ol>
+
+  <p>
+    CoderPad is a collaborative code editor with real-time execution
+     built straight into the browser.
+  </p>
+    <p>
+      This pad also supports typing commands directly into the
+      interactive shell on the right side of the screen.
+    </p>
+    <p><a href="https://plus.google.com/hangouts/_?gid=583721984460&amp;gd=https%3A%2F%2Fcoderpad.io%2F269639">Open Google Hangout</a></p>
+  </p>
+</div>
+
+
+
+
+<script>
+  window.lang     = 'python';
+  window.pad      = '269639';
+  window.username = null ||
+    ('Guest ' + Math.floor(Math.random() * 1000));
+  window.snippets = {"Python Search Metrics — Base":"# We need to do some analysis of Yelp's search algorithm performance!\r\n\r\n\r\ndef mrjob(inp, mapper_f, reducer_f):\r\n  \"\"\"Inline version of MRJob.\"\"\"\r\n  from itertools import chain\r\n  from itertools import starmap\r\n  map_step_out = chain(*map(mapper_f, inp))\r\n  def group_kv(key_val_s):\r\n    out_d = {}\r\n    for key_val in key_val_s:\r\n      key, val = key_val\r\n      out_d.setdefault(key, []).append(val)\r\n    return out_d.iteritems()\r\n  group_step_out = group_kv(map_step_out)\r\n  reduce_step_out = chain(*starmap(reducer_f, group_step_out))\r\n  return list(reduce_step_out)\r\n\r\n\r\ndef biz_ctr_mapper(item):\r\n  yield 'm_key', 'm_val'\r\n\r\ndef biz_ctr_reducer(key, values):\r\n  yield 'r_key', ['r_val'] + values\r\n\r\nBIZ_CTR_INPUT = [\r\n  {'type': 'view', 'biz_id': 1},\r\n  {'type': 'view', 'biz_id': 2},\r\n  {'type': 'view', 'biz_id': 3},\r\n  {'type': 'click', 'biz_id': 1},\r\n  {'type': 'view', 'biz_id': 2},\r\n  {'type': 'view', 'biz_id': 4},\r\n  {'type': 'click', 'biz_id': 2},\r\n]\r\n\r\ndef run_biz_ctr():\r\n  print(repr(mrjob(BIZ_CTR_INPUT, biz_ctr_mapper, biz_ctr_reducer)))\r\n\r\n\r\nrun_biz_ctr()","Python Search Metrics — Cat CTR":"def cat_ctr_mapper(item):\r\n  yield 'm_key', 'm_val'\r\n\r\n\r\ndef cat_ctr_reducer(key, values):\r\n  yield 'r_key', ['r_val'] + values\r\n\r\nCAT_CTR_INPUT = SEARCH_CTR_INPUT + [\r\n  {'biz_id': 1, 'cat': 'burgers'},\r\n  {'biz_id': 2, 'cat': 'indian'},\r\n  {'biz_id': 3, 'cat': 'diners'},\r\n  {'biz_id': 4, 'cat': 'seafood'},\r\n]\r\n\r\ndef run_cat_ctr():\r\n  print()\r\n  \r\nrun_cat_ctr()","Python Search Metrics — Search CTR":"def search_ctr_mapper(item):\r\n  yield 'm_key', 'm_val'\r\n\r\ndef search_ctr_reducer(key, values):\r\n  yield 'r_key', ['r_val'] + values\r\n\r\nSEARCH_CTR_INPUT = [\r\n  {'type': 'view', 'biz_id': 1, 'search_id': 'a'},\r\n  {'type': 'view', 'biz_id': 2, 'search_id': 'a'},\r\n  {'type': 'view', 'biz_id': 3, 'search_id': 'a'},\r\n  {'type': 'click', 'biz_id': 1, 'search_id': 'a'},\r\n  {'type': 'view', 'biz_id': 2, 'search_id': 'b'},\r\n  {'type': 'view', 'biz_id': 4, 'search_id': 'b'},\r\n  {'type': 'click', 'biz_id': 2, 'search_id': 'b'},\r\n]\r\n\r\ndef run_search_ctr():\r\n  print(repr(mrjob(SEARCH_CTR_INPUT, search_ctr_mapper, search_ctr_reducer)))\r\n  \r\nrun_search_ctr()","Python Inline MRJob":"def mrjob(inp, mapper_f, reducer_f):\r\n  \"\"\"Inline version of MRJob.\"\"\"\r\n  from itertools import chain\r\n  from itertools import starmap\r\n  map_step_out = chain(*map(mapper_f, inp))\r\n  def group_kv(key_val_s):\r\n    out_d = {}\r\n    for key_val in key_val_s:\r\n      key, val = key_val\r\n      out_d.setdefault(key, []).append(val)\r\n    return out_d.iteritems()\r\n  group_step_out = group_kv(map_step_out)\r\n  reduce_step_out = chain(*starmap(reducer_f, group_step_out))\r\n  return list(reduce_step_out)","Python Diversifier":"# Questions:\r\n# 1. What does a \"diverse\" selection of results technically mean?\r\n# 2. We have a list of \"good\" results, how do we pick a \"diverse\" selection of them?\r\n# 3. We have a list of results, some \"good\" some \"bad,\" how do we pick a \"good and diverse\" selection of them?\r\n\r\n    \r\ndef diversify(all_results, k):\r\n  \"\"\"Pick the k results from all_results that are the most diverse.\"\"\"\r\n  # TODO: Figure out what that means!\r\n  # TODO: Make this work!\r\n  return []\r\n\r\n\r\nif __name__ == '__main__':\r\n  # Here are some sample results.\r\n  all_results = [\r\n    {'distance': 1.0, 'category': 0.5},\r\n    {'distance': 0.7, 'category': 0.5},\r\n    {'distance': 0.1, 'category': 0.5},\r\n    {'distance': 0.2, 'category': 0.9},\r\n  ]\r\n  # Let's pick the most diverse set of them.\r\n  picked_results = diversify(all_results, 3)\r\n  \r\n  # Then print them out and compare.\r\n  print('Diversified:')\r\n  for result in picked_results:\r\n    print(result)\r\n","Java Top 10":"// Let's make a \"Top 10 Most Frequent Searches\" widget for Yelp's homepage!\r\n\r\n// Widget:\r\n// Top 10 Most Frequent Searches\r\n// 1. sushi\r\n// 2. doctor\r\n// 3. hamburger\r\n\r\n// n - # of queries in search log\r\n// m - # of unique queries in search log\r\n// k - top count\r\n\r\nimport java.util.*;\r\n\r\nclass Solution {\r\n\r\n\r\n  public static String[] getTopK(String[] searches, unsigned int k) {\r\n    // Rewrite this function to return the list of the top 10 frequent searches.\r\n    String[] exampleTopSearches = {\"topSearch\"};\r\n    return exampleTopSearches;\r\n  }\r\n\r\n\r\n  public static void main(String[] args) {\r\n    // This will run the above function with some sample input for testing.\r\n    String[] sampleSearchLog = {\r\n      \"sushi\",\r\n      \"hamburger\",\r\n      \"doctor\",\r\n      \"sushi\",\r\n      \"sushi\",\r\n      \"doctor\",\r\n    };\r\n    String[] top10 = getTopK(sampleSearchLog, 10);\r\n    for(String topSearch : top10) {\r\n      System.out.println(topSearch);\r\n    }\r\n  }\r\n}","C++ Top 10":"// Let's make a \"Top 10 Most Frequent Searches\" widget for Yelp's homepage!\r\n\r\n// Widget:\r\n// Top 10 Most Frequent Searches\r\n// 1. sushi\r\n// 2. doctor\r\n// 3. hamburger\r\n\r\n// n - # of queries in search log\r\n// m - # of unique queries in search log\r\n// k - top count\r\n\r\n#include \u003Ciostream\u003E\r\n#include \u003Cvector\u003E\r\n\r\nusing namespace std;\r\n\r\n\r\nvector\u003Cstring\u003E findTopK(vector\u003Cstring\u003E searches, unsigned int k) {\r\n  // Rewrite this function to return the list of top 10 most frequent searches.\r\n  vector\u003Cstring\u003E ex;\r\n  ex.push_back(\"top_search\");\r\n  return ex;\r\n}\r\n\r\n\r\nint main(const int argc, const char *argv[]) {\r\n  // This will run the above function with some sample input for testing.\r\n  vector\u003Cstring\u003E exampleSearches;\r\n  exampleSearches.push_back(\"sushi\");\r\n  exampleSearches.push_back(\"hamburger\");\r\n  exampleSearches.push_back(\"doctor\");\r\n  exampleSearches.push_back(\"sushi\");\r\n  exampleSearches.push_back(\"sushi\");\r\n  exampleSearches.push_back(\"doctor\");\r\n  \r\n  vector\u003Cstring\u003E topSearches = findTopK(exampleSearches, 10);\r\n  \r\n  for (unsigned int i = 0; i \u003C topSearches.size(); i++) {\r\n    cout \u003C\u003C topSearches[i] \u003C\u003C endl;\r\n  }\r\n  \r\n  return 0;\r\n}","Python Top 10":"# Let's make a \"Top 10 Most Frequent Searches\" widget for Yelp's homepage!\r\n\r\n# Widget:\r\n# Top 10 Most Frequent Searches\r\n# 1. sushi\r\n# 2. doctor\r\n# 3. hamburger\r\n\r\n# n - # of queries in search log\r\n# m - # of unique queries in search log\r\n# k - top count\r\n\r\n\r\ndef find_top_k(searches, k):\r\n  # Rewrite this function to return the list of top 10 most frequent searches.\r\n  return ['top_search']\r\n\r\n\r\n# This will run the above function with some sample input for testing.\r\nsample_searches = [\r\n  'sushi',\r\n  'hamburger',\r\n  'doctor',\r\n  'sushi',\r\n  'sushi',\r\n  'doctor',\r\n]\r\nfor top_search in find_top_k(sample_searches, 10):\r\n  print(top_search)\r\n"}
+</script>
+<script src="https://cdn.firebase.com/v0/firebase.js"></script>
+
+
+  
+  
+<div class="modal fade" id="switching-language-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <p>The pad's language is switching to: <span></span>&hellip;</p>
+  <p>Everyone&rsquo;s tabs will refresh shortly.</p>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="settings-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+  <h3><span class="fui-gear"></span>Pad Settings</h3>
+  <ul>
+    <li>
+      <h4>Language</h4>
+      <p>Warning: Changing the pad language will refresh the window for all participants.</p>
+      <select class="selectpicker" id="language-select" name="language-select"><option value="c">C</option>
+<option value="csharp">C#</option>
+<option value="cpp">C++</option>
+<option value="clojure">Clojure</option>
+<option value="coffeescript">CoffeeScript</option>
+<option value="go">Go</option>
+<option value="haskell">Haskell</option>
+<option value="java">Java</option>
+<option value="javascript">JavaScript</option>
+<option value="markdown">Markdown</option>
+<option value="objc">Objective-C</option>
+<option value="php">PHP</option>
+<option value="perl">Perl</option>
+<option selected="selected" value="python">Python</option>
+<option value="ruby">Ruby</option>
+<option value="scala">Scala</option></select>
+    </li>
+    <li>
+      <h4>Tab &nbsp;Spacing</h4>
+      <p>Control the number of spaces used for indentation.</p>
+      <select class="selectpicker" id="tab-type-select" name="tab-type-select"><option selected="selected" value="2">2 Space Tabs</option>
+<option value="4">4 Space Tabs</option>
+<option value="8">8 Space Tabs</option></select>
+    </li>
+  </ul>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="create-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      
+    <div class="modal-body clearfix">
+      <h4>Choose the language for your new pad:</h4>
+
+      <form accept-charset="UTF-8" action="/" class="new_pad" id="new_pad" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>
+        <div class="clearfix">
+            <ul>
+              <li class="header">Interpreted</li>
+                <li>
+                  <input id="pad_language_coffeescript" name="pad[language]" type="radio" value="coffeescript" />
+                  <label for="pad_language_coffeescript">CoffeeScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_javascript" name="pad[language]" type="radio" value="javascript" />
+                  <label for="pad_language_javascript">JavaScript</label>
+                </li>
+                <li>
+                  <input id="pad_language_perl" name="pad[language]" type="radio" value="perl" />
+                  <label for="pad_language_perl">Perl</label>
+                </li>
+                <li>
+                  <input id="pad_language_php" name="pad[language]" type="radio" value="php" />
+                  <label for="pad_language_php">PHP</label>
+                </li>
+                <li>
+                  <input id="pad_language_python" name="pad[language]" type="radio" value="python" />
+                  <label for="pad_language_python">Python</label>
+                </li>
+                <li>
+                  <input checked="checked" id="pad_language_ruby" name="pad[language]" type="radio" value="ruby" />
+                  <label for="pad_language_ruby">Ruby</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Compiled</li>
+                <li>
+                  <input id="pad_language_c" name="pad[language]" type="radio" value="c" />
+                  <label for="pad_language_c">C</label>
+                </li>
+                <li>
+                  <input id="pad_language_clojure" name="pad[language]" type="radio" value="clojure" />
+                  <label for="pad_language_clojure">Clojure</label>
+                </li>
+                <li>
+                  <input id="pad_language_cpp" name="pad[language]" type="radio" value="cpp" />
+                  <label for="pad_language_cpp">C++</label>
+                </li>
+                <li>
+                  <input id="pad_language_csharp" name="pad[language]" type="radio" value="csharp" />
+                  <label for="pad_language_csharp">C#</label>
+                </li>
+                <li>
+                  <input id="pad_language_go" name="pad[language]" type="radio" value="go" />
+                  <label for="pad_language_go">Go</label>
+                </li>
+                <li>
+                  <input id="pad_language_haskell" name="pad[language]" type="radio" value="haskell" />
+                  <label for="pad_language_haskell">Haskell</label>
+                </li>
+                <li>
+                  <input id="pad_language_java" name="pad[language]" type="radio" value="java" />
+                  <label for="pad_language_java">Java</label>
+                </li>
+                <li>
+                  <input id="pad_language_objc" name="pad[language]" type="radio" value="objc" />
+                  <label for="pad_language_objc">Objective-C</label>
+                </li>
+                <li>
+                  <input id="pad_language_scala" name="pad[language]" type="radio" value="scala" />
+                  <label for="pad_language_scala">Scala</label>
+                </li>
+            </ul>
+            <ul>
+              <li class="header">Documents</li>
+                <li>
+                  <input id="pad_language_markdown" name="pad[language]" type="radio" value="markdown" />
+                  <label for="pad_language_markdown">Markdown</label>
+                </li>
+            </ul>
+        </div>
+        <p>
+          <input class="btn btn-primary" name="commit" type="submit" value="Create Pad" /> or
+          <input class="btn btn-primary" name="commit" type="submit" value="Launch Google Hangout" />
+        </p>
+</form>    </div>
+
+    </div>
+  </div>
+</div>
+
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="//cdn.ravenjs.com/1.1.2/jquery,native/raven.min.js"></script>
+    <script>
+      Raven.config('https://4d747205c6ed435c889710eaead44e12@app.getsentry.com/10579', {
+        includePaths: [
+          /localhost/,
+          /coderpad\.io/,
+          /vincentwoo\.com/,
+          /d146h09pbg0b1a\.cloudfront/
+        ],
+        ignoreUrls: [
+          /graph\.facebook\.com/i,
+          /connect\.facebook\.net\/en_US\/all\.js/i,
+          /eatdifferent\.com\.woopra-ns\.com/i,
+          /static\.woopra\.com\/js\/woopra\.js/i,
+          /extensions\//i,
+          /^chrome:\/\//i,
+          /127\.0\.0\.1:4001\/isrunning/i,
+          /webappstoolbarba\.texthelp\.com\//i,
+          /metrics\.itunes\.apple\.com\.edgesuite\.net\//i
+        ]
+      }).install();
+    </script>
+  <script src="//d146h09pbg0b1a.cloudfront.net/assets/application-ac1fc5b18aff7c11b7c357930bb008e9.js"></script>
+</body>
+</html>
